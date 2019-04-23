@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DetalleCliente"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.DetalleCliente">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombreCliente"
+                style="@style/textViewOscuro"
+                android:text="@string/clientes" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="@dimen/paddingNormal"
+                android:paddingTop="@dimen/paddingNormal"
+                android:text="Ingreso de pesos: "
+                android:textSize="24dp" />
+
+            <!--Campo de los pollos -->
+            <LinearLayout
+                android:id="@+id/linearPollos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textViewPollos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Pollos:"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPolloPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPolloCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextPollo"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:hint="Ingrese peso n° 1"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/addCampoPollo"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de GDOBLE -->
+
+            <LinearLayout
+                android:id="@+id/linearGDoble"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewGDoble"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="G. Doble:"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGdoblePrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..."
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGdobleCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextGDoble"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoGDoble"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Campo de GROJA -->
+
+            <LinearLayout
+                android:id="@+id/linearGRoja"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewGRoja"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="G. Rojas :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGrojaPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGrojaCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextGRoja"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/addCampoGRoja"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de GNEGRA -->
+
+            <LinearLayout
+                android:id="@+id/linearGNegra"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewGNegra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="G. Negras :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGnegraPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextGnegraCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextGNegra"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoGNegra"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de PATO -->
+
+            <LinearLayout
+                android:id="@+id/linearPato"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewPato"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Patos :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPatoPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..."
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPatoCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextPato"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoPato"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de PAVO -->
+
+            <LinearLayout
+                android:id="@+id/linearPavo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewPavo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Pavos :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPavoPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPavoCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextPavo"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoPavo"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de PECHOE -->
+
+            <LinearLayout
+                android:id="@+id/linearPechoE"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewPechoE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Pecho E :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPechoEPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPechoECantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextPechoE"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoPechoE"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de PIERNAE -->
+
+            <LinearLayout
+                android:id="@+id/linearPiernaE"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewPiernaE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Pierna E :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPiernaEPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextPiernaECantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..."
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextPiernaE"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoPiernaE"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de ESPINAZO -->
+
+            <LinearLayout
+                android:id="@+id/linearEspinazo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewEspinazo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Espinazo :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextEspinazoPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextEspinazoCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextEspinazo"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoEspinazo"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de MENUDENCIA -->
+
+            <LinearLayout
+                android:id="@+id/linearMenudencia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textViewMenudencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Menudencia :"
+                    android:textSize="@dimen/titulo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Precio: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextMenudenciaPrecio"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/texto"
+                        android:text="Cantidad: "
+                        android:textSize="@dimen/texto" />
+
+                    <EditText
+                        android:id="@+id/editTextMenudenciaCantidad"
+                        style="@style/editTextCampoNumero"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextMenudencia"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginHorizontal="@dimen/texto"
+                        android:gravity="right"
+                        android:hint="Ingrese peso n° 1" />
+
+                    <ImageButton
+                        android:id="@+id/addCampoMenudencia"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="@dimen/paddingNormal"
+                        android:paddingRight="@dimen/paddingNormal"
+                        android:src="@mipmap/ic_add" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Campo de BOTONES -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Atras"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Atras"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20dp"
+                    android:visibility="gone"/>
+
+
+                <Button
+                    android:id="@+id/Boleta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/paddingNormal"
+                    android:paddingRight="@dimen/paddingNormal"
+                    android:text="Boletas"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

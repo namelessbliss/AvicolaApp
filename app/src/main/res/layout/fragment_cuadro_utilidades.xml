@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CuadroUtilidades">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textViewOscuro"
+                android:layout_marginBottom="@dimen/marginHTabla"
+                android:text="Cuadro de Utilidades" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TableLayout
+                        android:id="@+id/tablaUtilidades"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--CABECERA-->
+
+                        <TableRow
+                            android:layout_alignTop="@+id/tablaUtilidades"
+                            android:background="@color/colorPrimary">
+
+                            <TextView
+                                style="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/paddingNormal"
+                                android:text="Cliente"
+                                android:textSize="@dimen/titulo" />
+
+                            <TextView
+                                style="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingHorizontal="@dimen/paddingNormal"
+                                android:text="Utilidad"
+                                android:textSize="@dimen/titulo" />
+
+                        </TableRow>
+                    </TableLayout>
+
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tablaUtilidades"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/paddingNormal"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/reporteDelDia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimary"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/paddingNormal"
+                            android:text="Reporte del día"
+                            android:textColor="#000" />
+                    </LinearLayout>-->
+                </RelativeLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

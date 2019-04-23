@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ModuloGestion">
+
+    <TextView
+        android:text="@string/modulo_gestion"
+        style="@style/textViewOscuro" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnGestionCompra"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@mipmap/ic_compra"
+                android:padding="@dimen/marginHTabla"
+                android:text="Gestión de compra"
+                android:textSize="@dimen/texto" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnReporteFinanciero"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@mipmap/ic_dinero"
+                android:padding="@dimen/marginHTabla"
+                android:text="Reporte Financiero"
+                android:textSize="@dimen/texto" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnCuadroUtilidades"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@mipmap/ic_dinero2"
+                android:padding="@dimen/marginHTabla"
+                android:text="Cuadro de utilidades"
+                android:textSize="@dimen/texto" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

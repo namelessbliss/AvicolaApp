@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ReporteFinanciero">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textViewOscuro"
+                android:text="Reporte Financiero" />
+
+            <TextView
+                style="@style/textViewLista"
+                android:gravity="center_horizontal"
+                android:text="Fecha:" />
+
+            <EditText
+                android:id="@+id/editTextFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/editTextCampoTexto"
+                android:layout_marginBottom="@dimen/paddingMinimo"
+                android:ems="10"
+                android:focusableInTouchMode="false"/>
+
+            <Button
+                android:id="@+id/obtenerReporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/marginHTabla"
+                android:text="Obtener Reporte Existente"
+                android:textSize="@dimen/textoTabla" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/paddingNormal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ganancia:" />
+
+                    <EditText
+                        android:id="@+id/etGananciaDia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        style="@style/editTextCampoTexto"
+                        android:layout_weight="1"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ingrese monto pagado a sus trabajadores:" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/etPago"
+                            style="@style/editTextCampoDecimal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Ingrese pago" />
+
+                        <ImageButton
+                            android:id="@+id/addCampoPago"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="@dimen/paddingNormal"
+                            android:paddingRight="@dimen/paddingNormal"
+                            android:src="@mipmap/ic_add" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/campoPagosTrabajadores"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="El día de hoy usted ha ganado: " />
+
+                    <EditText
+                        android:id="@+id/etGananciaFinal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        style="@style/editTextCampoTexto"
+                        android:enabled="false"
+                        android:hint="..." />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRegistrarCalcular"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorAccent"
+                android:padding="@dimen/marginHTabla"
+                android:text="Registrar y Calcular"
+                android:textSize="@dimen/texto"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.DatosEmpresa">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/marginVTabla">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/titulo"
+            android:text="Nombre Empresarial"
+            android:layout_marginHorizontal="@dimen/texto"/>
+        <EditText
+            android:id="@+id/nombreEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese nombre"
+            android:layout_marginHorizontal="@dimen/titulo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/titulo"
+            android:text="Dirección"
+            android:layout_marginHorizontal="@dimen/texto"/>
+        <EditText
+            android:id="@+id/direccionEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese dirección"
+            android:layout_marginHorizontal="@dimen/titulo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/titulo"
+            android:text="Celular"
+            android:layout_marginHorizontal="@dimen/texto"/>
+        <EditText
+            android:id="@+id/celularEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número telefonico"
+            android:layout_marginHorizontal="@dimen/titulo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/titulo"
+            android:text="Logo"
+            android:layout_marginHorizontal="@dimen/texto"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/texto">
+
+            <ImageView
+                android:id="@+id/logoEmpresa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tunqui_logo"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/cambiarLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_image"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/texto"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/guardarCambiosEmpresa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/texto"
+                android:text="Guardar cambios"
+                android:paddingHorizontal="@dimen/texto"
+                android:textSize="@dimen/texto"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

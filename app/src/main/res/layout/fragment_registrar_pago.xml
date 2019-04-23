@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.RegistrarPago">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textViewOscuro"
+                android:padding="@dimen/paddingNormal"
+                android:text="Registrar Pago" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+                    <TableRow android:background="@color/colorPrimaryDark">
+
+                        <TextView
+                            android:id="@+id/nombreCliente"
+                            style="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/paddingMinimo"
+                            android:text="Cliente"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/titulo" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingNormal"
+                                android:text="Monto Actual"
+                                android:textSize="@dimen/titulo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingNormal"
+                                android:text="Saldo Anterior"
+                                android:textSize="@dimen/titulo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingMinimo"
+                                android:text="Total"
+                                android:textSize="@dimen/titulo"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/subtotal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingMinimo"
+                                android:hint=""
+                                android:enabled="false"
+                                android:shadowColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/texto" />
+
+                            <EditText
+                                android:id="@+id/saldoAnterior"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingMinimo"
+                                android:enabled="false"
+                                android:hint=""
+                                android:shadowColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/texto" />
+
+                            <EditText
+                                android:id="@+id/total"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/paddingMinimo"
+                                android:hint=""
+                                android:enabled="false"
+                                android:shadowColor="@color/colorPrimaryDark"
+                                android:textSize="@dimen/texto" />
+
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_margin="@dimen/paddingMinimo"
+                        android:background="@color/colorAccent"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/paddingNormal"
+                            android:text="Saldo Actual"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/titulo" />
+
+                        <EditText
+                            android:id="@+id/saldoActual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/paddingMinimo"
+                            android:hint=""
+                            android:enabled="false"
+                            android:textSize="@dimen/texto" />
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/paddingNormal"
+                        android:text="Monto a pagar:"
+                        android:textSize="@dimen/titulo" />
+
+                    <TableRow
+                        android:layout_margin="@dimen/paddingMinimo"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/montoPagar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/paddingMinimo"
+                            android:hint="Ingrese monto"
+                            android:inputType="numberDecimal"
+                            android:textSize="@dimen/texto" />
+
+                        <Button
+                            android:id="@+id/btnRegistrarPago"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimaryDark"
+                            android:paddingHorizontal="@dimen/paddingMinimo"
+                            android:textColor="@color/White"
+                            android:text="Registrar Pago" />
+
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

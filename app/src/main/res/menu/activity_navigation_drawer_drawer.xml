@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_config"
+            android:icon="@mipmap/ic_config"
+            android:title="Configuración"/>
+        <item
+            android:id="@+id/nav_clientes"
+            android:icon="@mipmap/ic_pollo"
+            android:title="Clientes" />
+        <item
+            android:id="@+id/nav_boletas"
+            android:icon="@mipmap/ic_boleta"
+            android:title="Boletas" />
+        <item
+            android:id="@+id/nav_estadoCuenta"
+            android:icon="@mipmap/ic_dinero"
+            android:title="Estado de cuenta" />
+        <item
+            android:id="@+id/nav_moduloGestion"
+            android:icon="@mipmap/ic_compra"
+            android:title="Gestion" />
+        <item
+            android:id="@+id/nav_cerrarSersion"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Cerrar Sesion" />
+    </group>
+
+    <!--<item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>

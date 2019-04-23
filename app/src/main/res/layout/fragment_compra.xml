@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Compra">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textViewOscuro"
+                android:text="@string/compra" />
+
+            <TextView
+                style="@style/textViewLista"
+                android:gravity="center_horizontal"
+                android:text="Seleccione fecha:" />
+
+            <EditText
+                android:id="@+id/editTextFechaCompra"
+                style="@style/editTextCampoTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/paddingMinimo"
+                android:ems="10"
+                android:focusableInTouchMode="false" />
+
+            <Button
+                android:id="@+id/obtenerReporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/marginHTabla"
+                android:text="Obtener Reporte Existente"
+                android:textSize="@dimen/textoTabla" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/paddingNormal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/paddingMinimo">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Precio de compra:" />
+
+                    <EditText
+                        android:id="@+id/editTextPrecioCompra"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:hint=""
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Capital de inversión:" />
+
+                    <EditText
+                        android:id="@+id/editTextCapital"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:hint=""
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/paddingNormal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Ingreso pesos:" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextPeso"
+                            style="@style/editTextCampoDecimal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Ingrese peso" />
+
+                        <ImageButton
+                            android:id="@+id/addCampo"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="@dimen/paddingNormal"
+                            android:paddingRight="@dimen/paddingNormal"
+                            android:src="@mipmap/ic_add"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearPesos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnGenerarReporte"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/marginHTabla"
+                    android:text="Generar Reporte"
+                    android:textSize="@dimen/texto"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/Reintentar"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/marginHTabla"
+                    android:text="Reintentar"
+                    android:textSize="@dimen/texto"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/registrarDatos"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/marginHTabla"
+                    android:text="Registrar Datos"
+                    android:textSize="@dimen/texto"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

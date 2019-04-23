@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ReportePesos">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textViewOscuro"
+                android:text="@string/reporte_de_pesos" />
+
+            <TextView
+                style="@style/textViewLista"
+                android:gravity="center_horizontal"
+                android:text="Fecha:" />
+
+            <EditText
+                android:id="@+id/editTextFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/editTextCampoTexto"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="date"
+                android:enabled="false"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/paddingMinimo"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Pesos de compra:" />
+
+                    <EditText
+                        android:id="@+id/etPesosCompra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="..."
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Pesos Venta:" />
+
+                    <EditText
+                        android:id="@+id/etPesosVenta"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="..."
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Perdida en Peso:" />
+
+                    <EditText
+                        android:id="@+id/etPerdidaPeso"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="..."
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Capital Inversion:" />
+
+                    <EditText
+                        android:id="@+id/etCapitalInversion"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:hint="..."
+                        android:enabled="false"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Venta Total:" />
+
+                    <EditText
+                        android:id="@+id/etVentaDia"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:hint="..."
+                        android:enabled="false"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/paddingMinimo"
+                    android:layout_marginVertical="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Ganancia del día:" />
+
+                    <EditText
+                        android:id="@+id/etGananciaDia"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:hint="..."
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnFinanzas"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/marginHTabla"
+                android:text="Ir a modulo finanzas"
+                android:textSize="@dimen/texto"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

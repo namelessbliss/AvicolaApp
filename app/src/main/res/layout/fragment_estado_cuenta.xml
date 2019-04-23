@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/EstadoCuenta"
+    tools:context=".Fragments.EstadoCuenta">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/tituloEstado"
+            style="@style/textViewOscuro"
+            android:text="@string/estado_de_cuenta" />
+        <ListView
+            android:id="@+id/listViewEstado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tituloEstado">
+        </ListView>
+
+    </RelativeLayout>
+
+</FrameLayout>

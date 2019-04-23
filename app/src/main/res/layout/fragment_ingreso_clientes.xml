@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.IngresoClientes">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/textViewOscuro"
+            android:padding="@dimen/texto"
+            android:text="Ingreso de Clientes" />
+
+        <TextView
+            style="@style/textViewMensaje"
+            android:layout_marginHorizontal="@dimen/paddingMinimo"
+            android:text="@string/mensajeIngresoCliente" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/paddingMinimo"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/nombreClienteIngreso"
+                    style="@style/editTextCampoTexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/texto"
+                    android:layout_weight="0.5"
+                    android:hint="Ingrese nombre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/saldoClienteIngreso"
+                    style="@style/editTextCampoDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/texto"
+                    android:layout_weight="0.5"
+                    android:hint="Ingrese saldo" />
+
+                <Button
+                    android:id="@+id/btnAgregarCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/texto"
+                    android:background="@color/colorPrimary"
+                    android:paddingHorizontal="@dimen/texto"
+                    android:text="Agregar" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listViewClientes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

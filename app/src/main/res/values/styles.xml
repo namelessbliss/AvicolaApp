@@ -1,0 +1,119 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>-->
+        <item name="colorControlNormal">@color/iron</item>
+       <!-- <item name="colorControlActivated">@color/colorBackground</item>-->
+        <item name="colorControlHighlight">@color/White</item>
+        <item name="android:textColorHint">@color/iron</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:selectableItemBackgroundBorderless">@color/windowBackground</item>
+        <!--<item name="android:windowBackground">@color/windowBackground</item>-->
+    </style>
+
+    <style name="alertDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:titleTextColor" tools:targetApi="m">@android:color/black</item>
+    </style>
+
+
+
+    <style name="alertDialog2" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">8sp</item>
+        <item name="android:titleTextColor" tools:targetApi="m">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="textViewOscuro" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:textSize">26dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="textViewMensaje" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="editTextCampoNumero" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorBackground</item>
+        <item name="colorControlActivated">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="editTextCampoDecimal" >
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorBackground</item>
+        <item name="android:colorControlActivated">@color/colorBackground</item>
+        <item name="colorControlHighlight">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="editTextCampoTexto" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorBackground</item>
+        <item name="colorControlActivated">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">textAutoComplete</item>
+    </style>
+
+    <style name="textViewLista" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/texto</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="imageViewLista" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Tunquisolutions</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_navigation_drawer">Tunqui Solutions</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Tunqui Solutions</string>
+    <string name="nav_header_subtitle">tunquisolutions.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share">Compartir PDF</string>
+    <string name="msgGanancia">Ingrese el monto de inversion para calcular la ganancia</string>
+    <string name="clientes">Clientes</string>
+    <string name="boletas">Boletas</string>
+    <string name="configuracion">Configuración</string>
+    <string name="estado_de_cuenta">Estado de cuenta</string>
+    <string name="modulo_gestion">Modulo Gestión</string>
+    <string name="compra">Compra</string>
+    <string name="reporte_de_pesos">Reporte de Pesos</string>
+    <string name="mensajeIngresoCliente">Mantenga presionado el nombre del cliente para eliminar.</string>
+</resources>
