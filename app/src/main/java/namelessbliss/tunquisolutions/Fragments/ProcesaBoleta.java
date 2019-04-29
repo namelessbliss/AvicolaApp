@@ -67,7 +67,6 @@ import namelessbliss.tunquisolutions.DatosEmpresaManager.Empresa;
 import namelessbliss.tunquisolutions.DatosMenuManager.DatosMenu;
 import namelessbliss.tunquisolutions.Modelo.Boleta;
 import namelessbliss.tunquisolutions.Modelo.DatosMenuCliente;
-import namelessbliss.tunquisolutions.Modelo.Procesos.Consulta;
 import namelessbliss.tunquisolutions.R;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 import namelessbliss.tunquisolutions.TemplatePDF;
@@ -108,8 +107,6 @@ public class ProcesaBoleta extends Fragment {
     TemplatePDF pdf;
     // lista de datos para generar el pdf
     ArrayList<Boleta> listaDatosPDF = new ArrayList<>();
-    // objeto con procesos para las consultas
-    Consulta consulta = new Consulta();
 
     String fecha = "";
     TableLayout tableLayout;

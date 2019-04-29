@@ -20,4 +20,8 @@
     <string name="compra">Compra</string>
     <string name="reporte_de_pesos">Reporte de Pesos</string>
     <string name="mensajeIngresoCliente">Mantenga presionado el nombre del cliente para eliminar.</string>
+    <string name="registrar_datos">Registrar Datos</string>
+    <string name="reintentar">Reintentar</string>
+    <string name="generar_reporte">Generar Reporte</string>
+    <string name="ingrese_peso">Ingrese peso</string>
 </resources>

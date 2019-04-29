@@ -39,13 +39,13 @@ import java.util.List;
 import java.util.Map;
 
 import namelessbliss.tunquisolutions.Modelo.SelectDateFragment;
+import namelessbliss.tunquisolutions.Modelo.Servidor;
 import namelessbliss.tunquisolutions.R;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Compra extends Fragment {
+
+    String url = new Servidor().getSERVIDOR_URL();
 
     RequestQueue queue;
 
@@ -57,31 +57,30 @@ public class Compra extends Fragment {
     HashMap<String, String> user;
 
     private Calendar calendar;
-
-    EditText etFecha, etPrecioCompra, etPeso, etCapital;
-
+    //Campos de la vista compra
+    EditText etFecha, etPrecioCompra, etNumeroJabas, etTara, etDevolucion, etPeso, etCapital;
+    // boton para añadir mas compos de pesos
     ImageButton addCampo;
-
+    // botones de la vista compra
     Button btnGenerarReporte, btnRegistrarDatos, btnObtenerReporte;
 
     //Declaracion de los contenedores
     LinearLayout linearCampos;
 
     // Declaracion de listado de tipos de campos de texto
-
     ArrayList<EditText> listaCamposPesos;
 
     ArrayList<Float> listaPesos;
 
-    float precioCompra = 0;
+    private float precioCompra = 0;
+    private int numJabas = 0;
+    private float valTara = 0;
+    private float valDevolucion = 0;
 
-    float pesoTotal = 0;
-
-    float capitalInversion = 0;
-
-    public Compra() {
-        // Required empty public constructor
-    }
+    private float pesoTotal = 0;
+    private float pesoBruto = 0;
+    private float pesoNeto = 0;
+    private float capitalInversion = 0;
 
 
     @Override
@@ -100,6 +99,9 @@ public class Compra extends Fragment {
 
         etFecha = view.findViewById(R.id.editTextFechaCompra);
         etPrecioCompra = view.findViewById(R.id.editTextPrecioCompra);
+        etNumeroJabas = view.findViewById(R.id.editTextNumeroJabas);
+        etTara = view.findViewById(R.id.editTextTara);
+        etDevolucion = view.findViewById(R.id.editTextDevolucion);
         etPeso = view.findViewById(R.id.editTextPeso);
         etCapital = view.findViewById(R.id.editTextCapital);
         addCampo = view.findViewById(R.id.addCampo);
@@ -122,7 +124,10 @@ public class Compra extends Fragment {
         return view;
     }
 
-
+    /**
+     * Establece la fecha actual del campo calendario y
+     * establece la accion de seleccionar fecha
+     */
     public void configCalendar() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -224,24 +229,41 @@ public class Compra extends Fragment {
                 btnRegistrarDatos.setEnabled(false);
                 btnRegistrarDatos.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Registrando Datos", Toast.LENGTH_SHORT).show();
-                validarCampos();
                 validarLista(listaCamposPesos);
                 sumarPesos(listaCamposPesos);
+                validarCampos();
                 fecha = etFecha.getText().toString();
                 registrarDatos();
             }
         });
     }
 
+    /**
+     * Valida los compos de la vista y calcula el capital de inversion
+     */
     private void validarCampos() {
         if (!etPrecioCompra.getText().toString().isEmpty())
             precioCompra = Float.parseFloat(etPrecioCompra.getText().toString());
         else
             etPrecioCompra.setText("0");
-        if (!etCapital.getText().toString().isEmpty())
-            capitalInversion = Float.parseFloat(etCapital.getText().toString());
+        if (!etNumeroJabas.getText().toString().isEmpty())
+            numJabas = Integer.parseInt(etNumeroJabas.getText().toString());
         else
-            etCapital.setText("0");
+            etNumeroJabas.setText("0");
+        if (!etTara.getText().toString().isEmpty())
+            valTara = Float.parseFloat(etTara.getText().toString());
+        else
+            etTara.setText("0");
+        if (!etDevolucion.getText().toString().isEmpty())
+            valDevolucion = Float.parseFloat(etDevolucion.getText().toString());
+        else
+            etDevolucion.setText("0");
+
+        pesoBruto = pesoTotal - (numJabas * valTara);
+        pesoNeto = pesoBruto - valDevolucion;
+        capitalInversion = pesoNeto * precioCompra;
+
+        etCapital.setText(String.valueOf(capitalInversion));
     }
 
     private void sumarPesos(ArrayList<EditText> lista) {
@@ -256,7 +278,7 @@ public class Compra extends Fragment {
 
     private void obtenerReporte() {
 
-        String server_url = "http://avicolas.skapir.com/obtener_reporte_existente.php";
+        String server_url = url + "obtener_reporte_existente.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
@@ -329,7 +351,7 @@ public class Compra extends Fragment {
     }
 
     private void registrarDatos() {
-        String server_url = "http://avicolas.skapir.com/registrar_datos_utilidades.php";
+        String server_url = url + "registrar_datos_utilidades.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
@@ -368,6 +390,9 @@ public class Compra extends Fragment {
                 Map<String, String> param = new HashMap<String, String>();
                 param.put("idUsuario", idUsuario);
                 param.put("pesoCompra", String.valueOf(pesoTotal));
+                param.put("numJabas", String.valueOf(numJabas));
+                param.put("valTara", String.valueOf(valTara));
+                param.put("valDevolucion", String.valueOf(valDevolucion));
                 param.put("precioCompra", String.valueOf(precioCompra));
                 param.put("capitalInversion", String.valueOf(capitalInversion));
                 param.put("fecha", fecha);

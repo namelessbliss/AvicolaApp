@@ -152,7 +152,6 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
                         final String result = response.toString();
                         Log.d("response", "result : " + result); //when response come i will log it
                         JSONArray jsonAry = null;
-                        //TODO BOLETA
                         try {
                             jsonAry = new JSONArray(response);
                             for (int i = 0; i < jsonAry.length(); i++) {

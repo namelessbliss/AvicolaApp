@@ -49,15 +49,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingVertical="@dimen/paddingNormal">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/paddingMinimo"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/paddingMinimo">
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
 
                     <TextView
                         style="@style/textViewLista"
@@ -74,7 +72,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/paddingMinimo"
                         android:layout_weight="1"
-                        android:hint=""
                         android:inputType="numberDecimal" />
 
                 </LinearLayout>
@@ -82,6 +79,82 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Número de jabas:" />
+
+                    <EditText
+                        android:id="@+id/editTextNumeroJabas"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Valor de Tara:      " />
+
+                    <EditText
+                        android:id="@+id/editTextTara"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textViewLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:paddingStart="@dimen/paddingNormal"
+                        android:text="Valor de devolución:" />
+
+                    <EditText
+                        android:id="@+id/editTextDevolucion"
+                        style="@style/editTextCampoDecimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/paddingMinimo"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
                     android:orientation="horizontal">
 
                     <TextView
@@ -99,9 +172,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/paddingMinimo"
                         android:layout_weight="1"
-                        android:hint=""
+                        android:enabled="false"
+                        android:focusable="false"
                         android:inputType="numberDecimal" />
-
                 </LinearLayout>
 
 
@@ -132,7 +205,7 @@
                             style="@style/editTextCampoDecimal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Ingrese peso" />
+                            android:hint="@string/ingrese_peso" />
 
                         <ImageButton
                             android:id="@+id/addCampo"
@@ -165,7 +238,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorPrimary"
                     android:padding="@dimen/marginHTabla"
-                    android:text="Generar Reporte"
+                    android:text="@string/generar_reporte"
                     android:textSize="@dimen/texto"
                     android:visibility="gone" />
 
@@ -177,7 +250,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorPrimary"
                     android:padding="@dimen/marginHTabla"
-                    android:text="Reintentar"
+                    android:text="@string/reintentar"
                     android:textSize="@dimen/texto"
                     android:visibility="gone" />
 
@@ -189,10 +262,9 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorPrimary"
                     android:padding="@dimen/marginHTabla"
-                    android:text="Registrar Datos"
+                    android:text="@string/registrar_datos"
                     android:textSize="@dimen/texto"
                     android:visibility="gone" />
-
             </LinearLayout>
 
         </LinearLayout>
