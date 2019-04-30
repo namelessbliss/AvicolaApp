@@ -12,7 +12,7 @@
         <item name="colorControlHighlight">@color/White</item>
         <item name="android:textColorHint">@color/iron</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="android:selectableItemBackgroundBorderless">@color/windowBackground</item>
+        <!--<item name="android:selectableItemBackgroundBorderless">@color/windowBackground</item>-->
         <!--<item name="android:windowBackground">@color/windowBackground</item>-->
     </style>
 

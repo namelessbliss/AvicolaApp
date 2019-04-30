@@ -140,23 +140,35 @@ public class Compra extends Fragment {
             public void onClick(View view) {
                 DialogFragment selecDialogFragment = new SelectDateFragment();
                 ((SelectDateFragment) selecDialogFragment).setEtFecha(etFecha);
-                btnGenerarReporte.setEnabled(false);
-                btnGenerarReporte.setVisibility(View.GONE);
-                btnRegistrarDatos.setEnabled(false);
-                btnRegistrarDatos.setVisibility(View.GONE);
-                addCampo.setEnabled(false);
-                addCampo.setVisibility(View.GONE);
-                etPrecioCompra.setText("");
-                etPeso.setText("");
-                linearCampos.removeAllViews();
-                listaPesos.removeAll(listaPesos);
-                listaCamposPesos.removeAll(listaCamposPesos);
-                establecerBoton(addCampo, listaCamposPesos, linearCampos);
+                limpiarDatos();
                 selecDialogFragment.show(getFragmentManager(), "DatePicker");
             }
         });
 
 
+    }
+
+    /**
+     * Refresca el estado de los componentes de la vista y restablece valor de las variables
+     */
+    private void limpiarDatos() {
+        btnGenerarReporte.setEnabled(false);
+        btnGenerarReporte.setVisibility(View.GONE);
+        btnRegistrarDatos.setEnabled(false);
+        btnRegistrarDatos.setVisibility(View.GONE);
+        addCampo.setEnabled(false);
+        addCampo.setVisibility(View.GONE);
+        linearCampos.removeAllViews();
+        listaPesos.removeAll(listaPesos);
+        listaCamposPesos.removeAll(listaCamposPesos);
+        establecerBoton(addCampo, listaCamposPesos, linearCampos);
+        precioCompra = 0;
+        pesoBruto = 0;
+        pesoNeto = 0;
+        pesoTotal = 0;
+        numJabas = 0;
+        valTara = 0;
+        valDevolucion = 0;
     }
 
     private void establecerBoton(ImageButton Boton, final List<EditText> lista, final LinearLayout linear) {
@@ -232,6 +244,7 @@ public class Compra extends Fragment {
                 validarLista(listaCamposPesos);
                 sumarPesos(listaCamposPesos);
                 validarCampos();
+                calcularCapitalInversion();
                 fecha = etFecha.getText().toString();
                 registrarDatos();
             }
@@ -258,10 +271,21 @@ public class Compra extends Fragment {
             valDevolucion = Float.parseFloat(etDevolucion.getText().toString());
         else
             etDevolucion.setText("0");
+        if (!etCapital.getText().toString().isEmpty())
+            capitalInversion = Float.parseFloat(etCapital.getText().toString());
+        else
+            etCapital.setText("0");
+    }
 
+    private void calcularCapitalInversion() {
         pesoBruto = pesoTotal - (numJabas * valTara);
         pesoNeto = pesoBruto - valDevolucion;
-        capitalInversion = pesoNeto * precioCompra;
+
+        //Trunca a dos decimales
+        float subt = pesoNeto * precioCompra;
+        subt = (int) (subt * 100);
+
+        capitalInversion = subt / 100.0f;
 
         etCapital.setText(String.valueOf(capitalInversion));
     }
@@ -291,6 +315,9 @@ public class Compra extends Fragment {
                                 JSONObject jSONObject = jsonArray.getJSONObject(i);
 
                                 etPrecioCompra.setText(jSONObject.getString("precio_compra"));
+                                etNumeroJabas.setText(jSONObject.getString("numero_jaba"));
+                                etTara.setText(jSONObject.getString("valor_tara"));
+                                etDevolucion.setText(jSONObject.getString("valor_devolucion"));
                                 etPeso.setText(jSONObject.getString("peso_compra"));
                                 etCapital.setText(jSONObject.getString("capital_inversion"));
                             }
@@ -307,9 +334,7 @@ public class Compra extends Fragment {
 
                         } catch (JSONException e) {
                             Toast.makeText(getActivity(), "El reporte no existe, registre los datos", Toast.LENGTH_LONG).show();
-                            etPrecioCompra.setText("");
                             etCapital.setText("");
-                            etPeso.setText("");
                             btnGenerarReporte.setEnabled(false);
                             btnGenerarReporte.setVisibility(View.GONE);
                             addCampo.setEnabled(true);
