@@ -21,8 +21,7 @@
                 android:text="@string/clientes" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textViewLista"
                 android:gravity="left"
                 android:paddingLeft="@dimen/paddingNormal"
                 android:paddingTop="@dimen/paddingNormal"
@@ -36,12 +35,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textViewPollos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -56,7 +54,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -67,11 +65,11 @@
                         android:layout_marginHorizontal="@dimen/texto"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:hint="..." />
+                        android:hint="0" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -82,7 +80,7 @@
                         android:layout_marginHorizontal="@dimen/texto"
                         android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:hint="..." />
+                        android:hint="0" />
 
                 </LinearLayout>
 
@@ -123,8 +121,7 @@
 
                 <TextView
                     android:id="@+id/textViewGDoble"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -139,7 +136,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -155,7 +152,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -206,8 +203,7 @@
 
                 <TextView
                     android:id="@+id/textViewGRoja"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -222,7 +218,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -237,7 +233,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -290,8 +286,7 @@
 
                 <TextView
                     android:id="@+id/textViewGNegra"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -306,7 +301,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -321,7 +316,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -373,8 +368,7 @@
 
                 <TextView
                     android:id="@+id/textViewPato"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -389,7 +383,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -405,7 +399,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -457,8 +451,7 @@
 
                 <TextView
                     android:id="@+id/textViewPavo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -473,7 +466,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -488,7 +481,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -540,8 +533,7 @@
 
                 <TextView
                     android:id="@+id/textViewPechoE"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -556,7 +548,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -571,7 +563,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -623,8 +615,7 @@
 
                 <TextView
                     android:id="@+id/textViewPiernaE"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -639,7 +630,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -654,7 +645,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -707,8 +698,7 @@
 
                 <TextView
                     android:id="@+id/textViewEspinazo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -723,7 +713,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -738,7 +728,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />
@@ -790,8 +780,7 @@
 
                 <TextView
                     android:id="@+id/textViewMenudencia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/textViewLista"
                     android:gravity="left"
                     android:paddingLeft="@dimen/paddingNormal"
                     android:paddingRight="@dimen/paddingNormal"
@@ -806,7 +795,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Precio: "
                         android:textSize="@dimen/texto" />
@@ -821,7 +810,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textViewLista"
                         android:layout_marginStart="@dimen/texto"
                         android:text="Cantidad: "
                         android:textSize="@dimen/texto" />

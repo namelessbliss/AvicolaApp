@@ -1,21 +1,14 @@
 package namelessbliss.tunquisolutions.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.JsonReader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,20 +19,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import namelessbliss.tunquisolutions.Adaptadores.AdaptadorListView;
 import namelessbliss.tunquisolutions.Modelo.Cliente;
+import namelessbliss.tunquisolutions.Modelo.Servidor;
 import namelessbliss.tunquisolutions.R;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 
@@ -48,6 +42,8 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
 
     String idCliente, nombreCliente;
 
+    String url = new Servidor().getSERVIDOR_URL();
+
     // User Session Manager Class
     UserSessionManager session;
 
@@ -55,6 +51,8 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
     RequestQueue queue;
     Bundle bundle;
     ListView listView;
+
+    AdaptadorListView listadapter;
 
     // get user data from session
     HashMap<String, String> user;
@@ -133,55 +131,23 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
         return view;
     }
 
+    /**
+     * Compara y ordena los nombres de la lista de clientes
+     */
+    private void sortArrayList() {
+        Collections.sort(listClientes, new Comparator<Cliente>() {
+            @Override
+            public int compare(Cliente c1, Cliente c2) {
+                return c1.getNombre().compareToIgnoreCase(c2.getNombre());
+            }
+        });
+
+        listadapter.notifyDataSetChanged();
+    }
+
     private void getClientes() {
 
-        String server_url = "http://avicolas.skapir.com/obtener_nombres_clientes.php"; // url of server check this 100 times it must be working
-
-        /*StringRequest stringRequest=new StringRequest(Request.Method.POST, server_url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response)
-                    {
-                        JSONArray jsonAry = null;
-                        try {
-                            jsonAry = new JSONArray(response);
-                            final String result=response.toString();
-                            System.out.println(result);
-                            Log.d("response", "result : "+result); //when response come i will log it
-                            for (int i = 0; i < jsonAry.length(); i++) {
-                                JSONObject jSONObject = jsonAry.getJSONObject(i);
-                                String nombre = jSONObject.getString("NOMBRE_CLIENTE");
-                                listClientes.add(new Cliente(nombre,R.mipmap.ic_pollo));
-                            }
-                            AdaptadorListView listadapter = new AdaptadorListView(getContext(), R.layout.list_view_clientes, listClientes);
-
-                            listView.setAdapter(listadapter);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        final String result=response.toString();
-                        Log.d("response", "result : "+result); //when response come i will log it
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        error.printStackTrace();
-                        error.getMessage(); // when error come i will log it
-                    }
-                }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> param=new HashMap<String, String>();
-                System.out.println("id ...  "+bundle.getString("idUsuario"));
-                param.put("idUsuario",bundle.getString("idUsuario"));
-
-                return param;
-            }
-        };*/
+        String server_url = url + "obtener_nombres_clientes.php"; // url of server check this 100 times it must be working
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
@@ -200,9 +166,13 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
                                 nombreCliente = jSONObject.getString("NOMBRE_CLIENTE");
                                 listClientes.add(new Cliente(idCliente, nombreCliente, R.mipmap.ic_pollo));
                             }
-                            AdaptadorListView listadapter = new AdaptadorListView(getContext(), R.layout.list_view_clientes, listClientes);
+
+                            listadapter = new AdaptadorListView(getContext(), R.layout.list_view_clientes, listClientes);
 
                             listView.setAdapter(listadapter);
+
+                            sortArrayList();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -239,6 +209,8 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
     public void clickCliente(Cliente cliente) {
 
         if (cliente != null) {
+
+            listadapter.notifyDataSetChanged();
 
             DetalleCliente detalleCliente = new DetalleCliente();
 
