@@ -72,7 +72,7 @@ import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 import namelessbliss.tunquisolutions.TemplatePDF;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Vista de boleta, permite registrar la compra
  */
 public class ProcesaBoleta extends Fragment {
     RequestQueue queue;
@@ -80,17 +80,19 @@ public class ProcesaBoleta extends Fragment {
     //Listas de pesos pasados del fragment detalle cliente
     List<EditText> listaPesosGDobles, listaPesosPollos, listaPesosGNegras, listaPesosGRojas,
             listaPesosPatos, listaPesosPavos, listaPesosPechoE, listaPesosPiernaE,
-            listaPesosEspinazo, listaPesosMenudencia;
+            listaPesosEspinazo, listaPesosMenudencia, listaPesosAla, listaPesosOtros;
     //tamaño maximo de los pesos que pueden ingresar
     float[] pesos = new float[100];
     // tamaño maximo de las cantidades que pueden ingresar
     int[] cantidades = new int[100];
     // peso por default para la tabla
     float precioPollo = 0, precioGdoble = 0, precioGnegra = 0, precioGroja = 0, precioPato = 0,
-            precioPavo = 0, precioPechoE = 0, precioPiernaE = 0, precioEspinazo = 0, precioMenudencia = 0;
+            precioPavo = 0, precioPechoE = 0, precioPiernaE = 0, precioEspinazo = 0, precioMenudencia = 0,
+            precioAla = 0, precioOtros = 0;
     // cantidad por default para la tabla
     int cantiPollo = 0, cantiGdoble = 0, cantiGnegra = 0, cantidGroja = 0, cantiPato = 0, cantiPavo = 0,
-            cantiPechoE = 0, cantiPiernaE = 0, cantiEspinazo = 0, cantiMenudencia = 0;
+            cantiPechoE = 0, cantiPiernaE = 0, cantiEspinazo = 0, cantiMenudencia = 0, cantiAla = 0,
+            cantiOtros = 0;
     // variable identificador de campos de precios
     int id = 0;
     // estado de fila subtotal
@@ -297,9 +299,7 @@ public class ProcesaBoleta extends Fragment {
             }
         });*/
 
-        recorrerDatos(view, listaPesosGDobles, listaPesosPollos, listaPesosGNegras, listaPesosGRojas,
-                listaPesosPatos, listaPesosPavos, listaPesosPechoE, listaPesosPiernaE,
-                listaPesosEspinazo, listaPesosMenudencia);
+        recorrerDatos();
 
         llenarFilaSubtotal(tableLayout, tituloSubtotal, valorSubtotal);
 
@@ -351,7 +351,7 @@ public class ProcesaBoleta extends Fragment {
 
     private void obtenerDatos() {
         bundle = getArguments();
-        //Establece el nombre del cliente seleccionado
+        //Obtiene el nombre del cliente seleccionado
         if (bundle != null) {
             idCliente = bundle.getString("ID_CLIENTE");
             nombreCliente = bundle.getString("NOMBRE_CLIENTE");
@@ -449,12 +449,7 @@ public class ProcesaBoleta extends Fragment {
         }
     }
 
-    private void recorrerDatos(View view, List<EditText> listaPesosGDobles,
-                               List<EditText> listaPesosPollos, List<EditText> listaPesosGNegras,
-                               List<EditText> listaPesosGRojas, List<EditText> listaPesosPatos,
-                               List<EditText> listaPesosPavos, List<EditText> listaPesosPechoE,
-                               List<EditText> listaPesosPiernaE, List<EditText> listaPesosEspinazo,
-                               List<EditText> listaPesosMenudencia) {
+    private void recorrerDatos() {
         if (listaPesosPollos != null && !listaPesosPollos.isEmpty()) {
             float peso = 0;
             float merma = cantiPollo * (float) (cliente.getMermaPollo() / 1000);
@@ -536,6 +531,22 @@ public class ProcesaBoleta extends Fragment {
             }
             llenarTabla(tableLayout, "Menudencia", cantiMenudencia, peso + merma, precioMenudencia);
         }
+        if (listaPesosAla != null && !listaPesosAla.isEmpty()) {
+            float peso = 0;
+            float merma = cantiAla * (float) (cliente.getMermaAla() / 1000);
+            for (int i = 0; i < listaPesosAla.size(); i++) {
+                peso += Float.parseFloat(listaPesosAla.get(i).getText().toString());
+            }
+            llenarTabla(tableLayout, "Menudencia", cantiAla, peso + merma, precioAla);
+        }
+        if (listaPesosOtros != null && !listaPesosOtros.isEmpty()) {
+            float peso = 0;
+            float merma = cantiOtros * (float) (cliente.getMermaOtros() / 1000);
+            for (int i = 0; i < listaPesosOtros.size(); i++) {
+                peso += Float.parseFloat(listaPesosOtros.get(i).getText().toString());
+            }
+            llenarTabla(tableLayout, "Menudencia", cantiOtros, peso + merma, precioOtros);
+        }
     }
 
     private void llenarFilaSubtotal(TableLayout tableLayout, TextView titulo, TextView valor) {
@@ -554,7 +565,6 @@ public class ProcesaBoleta extends Fragment {
         valor.setGravity(Gravity.CENTER);
         titulo.setPadding(5, 1, 5, 1);
         valor.setPadding(5, 1, 5, 1);
-        titulo.setText("SubTotal: ");
         for (int i = 0; i < subtotal.size(); i++) {
             subt += Float.parseFloat(subtotal.get(i).getText().toString());
         }
@@ -577,7 +587,6 @@ public class ProcesaBoleta extends Fragment {
             tableLayout.addView(row);
             filaSubGenerada = true;
         } else {
-            System.out.println("no fila");
             valor.setText(String.valueOf(montoSubtotal));
         }
     }
@@ -910,6 +919,14 @@ public class ProcesaBoleta extends Fragment {
         this.listaPesosMenudencia = listaPesosMenudencia;
     }
 
+    public void setListaPesosAla(List<EditText> listaPesosAla) {
+        this.listaPesosAla = listaPesosAla;
+    }
+
+    public void setListaPesosOtros(List<EditText> listaPesosOtros) {
+        this.listaPesosOtros = listaPesosOtros;
+    }
+
     public void setPrecioPollo(float precioPollo) {
         this.precioPollo = precioPollo;
     }
@@ -948,6 +965,22 @@ public class ProcesaBoleta extends Fragment {
 
     public void setPrecioMenudencia(float precioMenudencia) {
         this.precioMenudencia = precioMenudencia;
+    }
+
+    public void setPrecioAla(float precioAla) {
+        this.precioAla = precioAla;
+    }
+
+    public void setPrecioOtros(float precioOtros) {
+        this.precioOtros = precioOtros;
+    }
+
+    public void setCantiAla(int cantiAla) {
+        this.cantiAla = cantiAla;
+    }
+
+    public void setCantiOtros(int cantiOtros) {
+        this.cantiOtros = cantiOtros;
     }
 
     public void setCantiPollo(int cantiPollo) {

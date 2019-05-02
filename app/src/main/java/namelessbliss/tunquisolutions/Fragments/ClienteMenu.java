@@ -22,7 +22,7 @@ import namelessbliss.tunquisolutions.Modelo.DatosMenuCliente;
 import namelessbliss.tunquisolutions.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Vista de opciones de venta
  */
 public class ClienteMenu extends Fragment {
 
@@ -34,16 +34,21 @@ public class ClienteMenu extends Fragment {
 
     String idCliente, nombre;
     Button guardarCambios;
-    Switch gdoble, pollo, gnegra, groja, pato, pavo, pechoe, piernae, espinazo, menudencia;
+    /**
+     * Hardcoded Elementos de la vista,
+     * Opciones del menu
+     */
+    Switch gdoble, pollo, gnegra, groja, pato, pavo, pechoe, piernae, espinazo, menudencia, ala, otros;
     boolean estadoDoble = false, estadoPollo = false, estadoNegra = false, estadoRoja = false, estadoPato = false,
-            estadoPavo = false, estadoPechoe = false, estadoPiernae = false, estadoEspinazo = false, estadoMenudencia = false;
+            estadoPavo = false, estadoPechoe = false, estadoPiernae = false, estadoEspinazo = false,
+            estadoMenudencia = false, estadoAla, estadoOtros;
 
     double mermaPollo = 0, mermaGdoble = 0, mermaGnegra = 0, mermaGroja = 0,
             mermaPato = 0, mermaPavo = 0, mermaPiernae = 0, mermaPechoe = 0,
-            mermaEspinazo = 0, mermaMenudencia = 0;
+            mermaEspinazo = 0, mermaMenudencia = 0, mermaAla = 0, mermaOtros = 0;
 
     EditText etmermaPollo, etmermaGdoble, etmermaGnegra, etmermaGroja, etmermaPato, etmermaPavo, etmermaPechoE,
-            etmermaPiernaE, etmermaEspinazo, etmermaMenudencia;
+            etmermaPiernaE, etmermaEspinazo, etmermaMenudencia, etMermaAla, etMermaOtros;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,12 +63,6 @@ public class ClienteMenu extends Fragment {
         super.onPrepareOptionsMenu(menu);
 
     }
-
-
-    public ClienteMenu() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +88,8 @@ public class ClienteMenu extends Fragment {
         establecerSwitch(pechoe);
         establecerSwitch(espinazo);
         establecerSwitch(menudencia);
+        establecerSwitch(ala);
+        establecerSwitch(otros);
 
 
         guardarCambios.setOnClickListener(new View.OnClickListener() {
@@ -107,14 +108,16 @@ public class ClienteMenu extends Fragment {
                 }
                 if (datosMenuClientes != null) {
                     datosMenuClientes.add(new DatosMenuCliente(nombre, estadoPollo, estadoDoble, estadoNegra, estadoRoja, estadoPato,
-                            estadoPavo, estadoPiernae, estadoPechoe, estadoEspinazo, estadoMenudencia, mermaPollo, mermaGdoble, mermaGnegra,
-                            mermaGroja, mermaPato, mermaPavo, mermaPiernae, mermaPechoe, mermaEspinazo, mermaMenudencia));
+                            estadoPavo, estadoPiernae, estadoPechoe, estadoEspinazo, estadoMenudencia,  estadoAla, estadoOtros,
+                            mermaPollo, mermaGdoble, mermaGnegra,
+                            mermaGroja, mermaPato, mermaPavo, mermaPiernae, mermaPechoe, mermaEspinazo, mermaMenudencia, mermaAla, mermaOtros));
                     datosMenu.setDatosMenu(datosMenuClientes);
                 } else {
                     datosMenuClientes = new ArrayList<>();
                     datosMenuClientes.add(new DatosMenuCliente(nombre, estadoPollo, estadoDoble, estadoNegra, estadoRoja, estadoPato,
-                            estadoPavo, estadoPiernae, estadoPechoe, estadoEspinazo, estadoMenudencia, mermaPollo, mermaGdoble, mermaGnegra,
-                            mermaGroja, mermaPato, mermaPavo, mermaPiernae, mermaPechoe, mermaEspinazo, mermaMenudencia));
+                            estadoPavo, estadoPiernae, estadoPechoe, estadoEspinazo, estadoMenudencia, estadoAla, estadoOtros,
+                            mermaPollo, mermaGdoble, mermaGnegra,
+                            mermaGroja, mermaPato, mermaPavo, mermaPiernae, mermaPechoe, mermaEspinazo, mermaMenudencia, mermaAla, mermaOtros));
                     datosMenu.setDatosMenu(datosMenuClientes);
                 }
                 fragmentManager.beginTransaction()
@@ -159,6 +162,12 @@ public class ClienteMenu extends Fragment {
         if (estadoMenudencia)
             if (!etmermaMenudencia.getText().toString().isEmpty())
                 mermaMenudencia = Double.parseDouble(etmermaMenudencia.getText().toString());
+        if (estadoAla)
+            if (!etMermaAla.getText().toString().isEmpty())
+                mermaAla = Double.parseDouble(etMermaAla.getText().toString());
+        if (estadoOtros)
+            if (!etMermaOtros.getText().toString().isEmpty())
+                mermaOtros = Double.parseDouble(etMermaOtros.getText().toString());
     }
 
     private void capturarElementos(View view) {
@@ -173,6 +182,8 @@ public class ClienteMenu extends Fragment {
         piernae = view.findViewById(R.id.piernae);
         espinazo = view.findViewById(R.id.espinazo);
         menudencia = view.findViewById(R.id.menudencia);
+        ala = view.findViewById(R.id.ala);
+        otros = view.findViewById(R.id.otros);
 
         etmermaPollo = view.findViewById(R.id.mermaPollo);
         etmermaGdoble = view.findViewById(R.id.mermaGDoble);
@@ -184,6 +195,8 @@ public class ClienteMenu extends Fragment {
         etmermaPiernaE = view.findViewById(R.id.mermaPiernaE);
         etmermaEspinazo = view.findViewById(R.id.mermaEspinazo);
         etmermaMenudencia = view.findViewById(R.id.mermaMenudencia);
+        etMermaAla = view.findViewById(R.id.mermaAla);
+        etMermaOtros = view.findViewById(R.id.mermaOtros);
     }
 
     private void establecerSwitch(final Switch aSwitch) {
@@ -253,6 +266,18 @@ public class ClienteMenu extends Fragment {
                                 etmermaMenudencia.setText(String.valueOf(cliente.getMermaMenudencia()));
                             estadoMenudencia = true;
                             break;
+                        case R.id.ala:
+                            etMermaAla.setVisibility(View.VISIBLE);
+                            if (cliente != null)
+                                etMermaAla.setText(String.valueOf(cliente.getMermaAla()));
+                            estadoAla = true;
+                            break;
+                        case R.id.otros:
+                            etMermaOtros.setVisibility(View.VISIBLE);
+                            if (cliente != null)
+                                etMermaOtros.setText(String.valueOf(cliente.getMermaOtros()));
+                            estadoOtros = true;
+                            break;
                         default:
                             break;
                     }
@@ -309,6 +334,16 @@ public class ClienteMenu extends Fragment {
                             mermaMenudencia = 0;
                             estadoMenudencia = false;
                             break;
+                        case R.id.ala:
+                            etMermaAla.setVisibility(View.INVISIBLE);
+                            mermaAla = 0;
+                            estadoAla = false;
+                            break;
+                        case R.id.otros:
+                            etMermaOtros.setVisibility(View.INVISIBLE);
+                            mermaOtros = 0;
+                            estadoOtros = false;
+                            break;
                         default:
                             break;
                     }
@@ -356,6 +391,8 @@ public class ClienteMenu extends Fragment {
             estadoPechoe = cliente.isPechoe();
             estadoEspinazo = cliente.isEspinazo();
             estadoMenudencia = cliente.isMenudencia();
+            estadoAla = cliente.isAla();
+            estadoOtros = cliente.isOtros();
             establecerDatos();
         }
     }
@@ -371,10 +408,13 @@ public class ClienteMenu extends Fragment {
         pechoe.setChecked(estadoPechoe);
         espinazo.setChecked(estadoEspinazo);
         menudencia.setChecked(estadoMenudencia);
+        ala.setChecked(estadoAla);
+        otros.setChecked(estadoOtros);
         etablecerMermas();
     }
 
     private void etablecerMermas() {
+        //todo
         if (estadoPollo)
             etmermaPollo.setVisibility(View.VISIBLE);
         etmermaPollo.setText(String.valueOf(cliente.getMermaPollo()));
@@ -405,5 +445,11 @@ public class ClienteMenu extends Fragment {
         if (estadoMenudencia)
             etmermaMenudencia.setVisibility(View.VISIBLE);
         etmermaMenudencia.setText(String.valueOf(cliente.getMermaMenudencia()));
+        if (estadoAla)
+            etMermaAla.setVisibility(View.VISIBLE);
+        etMermaAla.setText(String.valueOf(cliente.getMermaAla()));
+        if (estadoOtros)
+            etMermaOtros.setVisibility(View.VISIBLE);
+        etMermaOtros.setText(String.valueOf(cliente.getMermaOtros()));
     }
 }

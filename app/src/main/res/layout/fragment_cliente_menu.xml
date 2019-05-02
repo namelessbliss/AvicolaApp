@@ -124,6 +124,46 @@
                             android:layout_weight="1"
                             android:paddingVertical="@dimen/paddingMinimo"
                             android:paddingHorizontal="@dimen/paddingNormal"
+                            android:text="Ala"
+                            android:textSize="@dimen/texto" />
+
+                        <Switch
+                            android:id="@+id/ala"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/mermaAla"
+                            style="@style/editTextCampoNumero"
+                            android:hint="Ingrese merma"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingVertical="@dimen/paddingMinimo"
+                            android:paddingHorizontal="@dimen/paddingNormal"
                             android:text="G. Doble"
                             android:textSize="@dimen/texto" />
 
@@ -462,6 +502,46 @@
 
                         <EditText
                             android:id="@+id/mermaMenudencia"
+                            style="@style/editTextCampoNumero"
+                            android:hint="Ingrese merma"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingVertical="@dimen/paddingMinimo"
+                            android:paddingHorizontal="@dimen/paddingNormal"
+                            android:text="Otros"
+                            android:textSize="@dimen/texto" />
+
+                        <Switch
+                            android:id="@+id/otros"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/mermaOtros"
                             style="@style/editTextCampoNumero"
                             android:hint="Ingrese merma"
                             android:visibility="gone"/>

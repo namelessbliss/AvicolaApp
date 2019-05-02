@@ -3,6 +3,7 @@ package namelessbliss.tunquisolutions.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -33,17 +36,21 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import namelessbliss.tunquisolutions.Modelo.SelectDateFragment;
 import namelessbliss.tunquisolutions.R;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Vista de saldos de clientes
  */
 public class EstadoCuentaCliente extends Fragment {
 
     TableLayout tablaSaldo;
 
     String saldoActual, nombreCliente, idCliente, pago, fecha, fechaActual;
+
+    EditText etFecha;
+    Button btnObtenerReporte;
 
     // User Session Manager Class
     UserSessionManager session;
@@ -96,6 +103,8 @@ public class EstadoCuentaCliente extends Fragment {
         fechaActual = mDay + "-" + month + "-" + mYear;
 
         tablaSaldo = view.findViewById(R.id.tablaSaldo);
+        etFecha = view.findViewById(R.id.editTextFechaCompra);
+        btnObtenerReporte = view.findViewById(R.id.obtenerReporte);
 
         // Session class instance
         session = new UserSessionManager(getContext());
@@ -112,15 +121,22 @@ public class EstadoCuentaCliente extends Fragment {
         queue = Volley.newRequestQueue(getContext());
 
         //obtenerDatosCliente();
+        configCalendar();
         estadoDeCuenta();
-
         return view;
     }
 
-    private void obtenerDatosCliente() {
-        Bundle bundle = getArguments();
-        idCliente = bundle.getString("ID_CLIENTE");
-        nombreCliente = bundle.getString("NOMBRE_CLIENTE");
+    /**
+     * Establece la fecha actual del campo calendario y
+     * establece la accion de seleccionar fecha
+     */
+    public void configCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        etFecha.setText(day + "-" + month + "-" + year);
+
     }
 
     private void llenarTabla(TableLayout tableLayout, String nombreCliente, String pago, String saldo, String fecha) {
@@ -183,7 +199,7 @@ public class EstadoCuentaCliente extends Fragment {
                                 fecha = jSONObject.getString("fecha");
                                 llenarTabla(tablaSaldo, nombreCliente, pago, saldoActual, fecha);
                             }
-                            Toast.makeText(getContext(),"Datos obtenidos",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Datos obtenidos", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -195,7 +211,7 @@ public class EstadoCuentaCliente extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(),"No se pudo obtener los datos",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No se pudo obtener los datos", Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                         error.getMessage(); // when error come i will log it
                     }

@@ -187,7 +187,7 @@ public class RegistrarPago extends Fragment {
 
     private void registrarSaldo() {
 
-        String server_url = "http://avicolas.skapir.com/registrar_saldo.php"; // url of server check this 100 times it must be working
+        String server_url = "http://avicolas.skapir.com/registrar_saldo.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {

@@ -1,6 +1,9 @@
 package namelessbliss.tunquisolutions.Modelo;
 
 public class DatosMenuCliente {
+    /**
+     * Datos de estado de las opciones de venta de los clientes
+     */
 
     private String nombre;
     private boolean pollo;
@@ -13,6 +16,8 @@ public class DatosMenuCliente {
     private boolean pechoe;
     private boolean espinazo;
     private boolean menudencia;
+    private boolean ala;
+    private boolean otros;
     private double mermaPollo;
     private double mermaGdoble;
     private double mermaGnegra;
@@ -23,14 +28,17 @@ public class DatosMenuCliente {
     private double mermaPechoe;
     private double mermaEspinazo;
     private double mermaMenudencia;
+    private double mermaAla;
+    private double mermaOtros;
 
     public DatosMenuCliente(String nombre, boolean pollo, boolean gdoble, boolean gnegra,
                             boolean groja, boolean pato, boolean pavo, boolean piernae,
                             boolean pechoe, boolean espinazo, boolean menudencia,
+                            boolean ala, boolean otros,
                             double mermaPollo, double mermaGdoble, double mermaGnegra,
                             double mermaGroja, double mermaPato, double mermaPavo,
                             double mermaPiernae, double mermaPechoe, double mermaEspinazo,
-                            double mermaMenudencia) {
+                            double mermaMenudencia, double mermaAla, double mermaOtros) {
         this.nombre = nombre;
         this.pollo = pollo;
         this.gdoble = gdoble;
@@ -42,6 +50,8 @@ public class DatosMenuCliente {
         this.pechoe = pechoe;
         this.espinazo = espinazo;
         this.menudencia = menudencia;
+        this.ala = ala;
+        this.otros = otros;
         this.mermaPollo = mermaPollo;
         this.mermaGdoble = mermaGdoble;
         this.mermaGnegra = mermaGnegra;
@@ -52,6 +62,8 @@ public class DatosMenuCliente {
         this.mermaPechoe = mermaPechoe;
         this.mermaEspinazo = mermaEspinazo;
         this.mermaMenudencia = mermaMenudencia;
+        this.mermaAla = mermaAla;
+        this.mermaOtros = mermaOtros;
     }
 
     public String getNombre() {
@@ -220,5 +232,37 @@ public class DatosMenuCliente {
 
     public void setMermaMenudencia(double mermaMenudencia) {
         this.mermaMenudencia = mermaMenudencia;
+    }
+
+    public boolean isAla() {
+        return ala;
+    }
+
+    public void setAla(boolean ala) {
+        this.ala = ala;
+    }
+
+    public boolean isOtros() {
+        return otros;
+    }
+
+    public void setOtros(boolean otros) {
+        this.otros = otros;
+    }
+
+    public double getMermaAla() {
+        return mermaAla;
+    }
+
+    public void setMermaAla(double mermaAla) {
+        this.mermaAla = mermaAla;
+    }
+
+    public double getMermaOtros() {
+        return mermaOtros;
+    }
+
+    public void setMermaOtros(double mermaOtros) {
+        this.mermaOtros = mermaOtros;
     }
 }

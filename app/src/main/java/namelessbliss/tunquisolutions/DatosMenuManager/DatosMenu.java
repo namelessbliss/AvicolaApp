@@ -42,7 +42,7 @@ public class DatosMenu {
         ary = new ArrayList<>();
     }
 
-    //Create login session
+    //Establece datos de las mermas
     public void setDatosMenu(ArrayList<DatosMenuCliente> arrayMenu) {
 
         String json = gson.toJson(arrayMenu);

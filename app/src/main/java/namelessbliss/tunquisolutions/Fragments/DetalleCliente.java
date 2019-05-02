@@ -40,48 +40,54 @@ public class DetalleCliente extends Fragment {
 
     //Declaracion de los contenedores
     LinearLayout linearPollos, linearGDoble, linearGRoja, linearGNegra,
-            linearPato, linearPavo, linearPechoE, linearPiernaE, linearEspinazo, linearMenudencia;
+            linearPato, linearPavo, linearPechoE, linearPiernaE, linearEspinazo, linearMenudencia,
+            linearAla, linearOtros;
 
     // Declaracion de los elementos
 
     TextView nombreCliente, txtTextViewPollos, textViewGDoble, textViewGRoja, textViewGNegra,
-            textViewPato, textViewPavo, textViewPechoE, textViewPiernaE, textViewEspinazo, textViewMenudencia;
+            textViewPato, textViewPavo, textViewPechoE, textViewPiernaE, textViewEspinazo,
+            textViewMenudencia, textViewAla, textViewOtros;
 
-    EditText editTextPollo, editTextGDoble, editTextGRoja, editTextGNegra,
-            editTextPato, editTextPavo, editTextPechoE, editTextPiernaE, editTextEspinazo, editTextMenudencia,
+    EditText etPesoPollo, etPesoGdoble, etPesoGroja, etPesoGnegra,
+            etPesoPato, etPesoPavo, etPesoPechoE, etPesoPiernaE, etPesoEspinazo, etPesoMenudencia,
+            etPesoAla, etPesoOtros,
             etCantiPollo, etCantiGdoble, etCantiGroja, etCantiGnegra, etCantiPato, etCantiPavo, etCantiPechoE,
-            etCantiPiernaE, etCantiEspinazo, etCantiMenudencia, etPrePollo, etPreGdoble, etPreGroja, etPreGnegra,
-            etPrePato, etPrePavo, etPrePechoE, etPrePiernaE, etPreEspinazo, etPreMenudencia;
+            etCantiPiernaE, etCantiEspinazo, etCantiMenudencia, etCantiAla, etCantiOtros,
+            etPrePollo, etPreGdoble, etPreGroja, etPreGnegra,
+            etPrePato, etPrePavo, etPrePechoE, etPrePiernaE, etPreEspinazo, etPreMenudencia, etPreAla,
+            etPreOtros;
 
     Button atras, boletas;
 
     ImageButton addCampoPollo, addCampoGDoble, addCampoGRoja, addCampoGNegra,
-            addCampoPato, addCampoPavo, addCampoPechoE, addCampoPiernaE, addCampoEspinazo, addCampoMenudencia;
+            addCampoPato, addCampoPavo, addCampoPechoE, addCampoPiernaE, addCampoEspinazo,
+            addCampoMenudencia, addCampoAla, addCampoOtros;
 
     // Declaracion de listado de tipos de campos de texto
 
     List<EditText> listaPesosGDobles, listaPesosPollos, listaPesosGNegras, listaPesosGRojas,
-            listaPesosPatos, listaPesosPavos, listaPesosPechoE, listaPesosPiernaE, listaPesosEspinazo, listaPesosMenudencia;
+            listaPesosPatos, listaPesosPavos, listaPesosPechoE, listaPesosPiernaE, listaPesosEspinazo,
+            listaPesosMenudencia, listaPesosAla, listaPesosOtros;
 
     // Estado de las opciones
 
     boolean pollo = false, gdoble = false, groja = false, gnegra = false, pato = false, pavo = false,
-            pechoe = false, piernae = false, espinazo = false, menudencia = false;
+            pechoe = false, piernae = false, espinazo = false, menudencia = false, ala = false, otros = false;
 
     // peso por default para la tabla
     float peso = 0, precioPollo = 0, precioGdoble = 0, precioGnegra = 0, precioGroja = 0, precioPato = 0,
-            precioPavo = 0, precioPechoE = 0, precioPiernaE = 0, precioEspinazo = 0, precioMenudencia = 0;
+            precioPavo = 0, precioPechoE = 0, precioPiernaE = 0, precioEspinazo = 0, precioMenudencia = 0,
+            precioAla = 0, precioOtros = 0;
     // cantidad por default para la tabla
     int cantiPollo = 0, cantiGdoble = 0, cantiGnegra = 0, cantidGroja = 0, cantiPato = 0, cantiPavo = 0,
-            cantiPechoE = 0, cantiPiernaE = 0, cantiEspinazo = 0, cantiMenudencia = 0;
+            cantiPechoE = 0, cantiPiernaE = 0, cantiEspinazo = 0, cantiMenudencia = 0, cantidadAla = 0,
+            cantidadOtros;
 
     ArrayList<Integer> listaIdProductos;
 
     ProcesaBoleta procesaBoleta;
 
-    public DetalleCliente() {
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,63 +129,75 @@ public class DetalleCliente extends Fragment {
             //System.out.println("pollo on");
             linearPollos.setVisibility(View.VISIBLE);
             listaPesosPollos = new ArrayList();
-            listaPesosPollos.add(editTextPollo);
+            listaPesosPollos.add(etPesoPollo);
             establecerBoton(addCampoPollo, listaPesosPollos, linearPollos);
         }
         if (gdoble) {
             //System.out.println("gdoble on");
             linearGDoble.setVisibility(View.VISIBLE);
             listaPesosGDobles = new ArrayList();
-            listaPesosGDobles.add(editTextGDoble);
+            listaPesosGDobles.add(etPesoGdoble);
             establecerBoton(addCampoGDoble, listaPesosGDobles, linearGDoble);
         }
         if (groja) {
             linearGRoja.setVisibility(View.VISIBLE);
             listaPesosGRojas = new ArrayList();
-            listaPesosGRojas.add(editTextGRoja);
+            listaPesosGRojas.add(etPesoGroja);
             establecerBoton(addCampoGRoja, listaPesosGRojas, linearGRoja);
         }
         if (gnegra) {
             linearGNegra.setVisibility(View.VISIBLE);
             listaPesosGNegras = new ArrayList();
-            listaPesosGNegras.add(editTextGNegra);
+            listaPesosGNegras.add(etPesoGnegra);
             establecerBoton(addCampoGNegra, listaPesosGNegras, linearGNegra);
         }
         if (pato) {
             linearPato.setVisibility(View.VISIBLE);
             listaPesosPatos = new ArrayList();
-            listaPesosPatos.add(editTextPato);
+            listaPesosPatos.add(etPesoPato);
             establecerBoton(addCampoPato, listaPesosPatos, linearPato);
         }
         if (pavo) {
             linearPavo.setVisibility(View.VISIBLE);
             listaPesosPavos = new ArrayList();
-            listaPesosPavos.add(editTextPavo);
+            listaPesosPavos.add(etPesoPavo);
             establecerBoton(addCampoPavo, listaPesosPavos, linearPavo);
         }
         if (pechoe) {
             linearPechoE.setVisibility(View.VISIBLE);
             listaPesosPechoE = new ArrayList();
-            listaPesosPechoE.add(editTextPechoE);
+            listaPesosPechoE.add(etPesoPechoE);
             establecerBoton(addCampoPechoE, listaPesosPechoE, linearPechoE);
         }
         if (piernae) {
             linearPiernaE.setVisibility(View.VISIBLE);
             listaPesosPiernaE = new ArrayList();
-            listaPesosPiernaE.add(editTextPiernaE);
+            listaPesosPiernaE.add(etPesoPiernaE);
             establecerBoton(addCampoPiernaE, listaPesosPiernaE, linearPiernaE);
         }
         if (espinazo) {
             linearEspinazo.setVisibility(View.VISIBLE);
             listaPesosEspinazo = new ArrayList();
-            listaPesosEspinazo.add(editTextEspinazo);
+            listaPesosEspinazo.add(etPesoEspinazo);
             establecerBoton(addCampoEspinazo, listaPesosEspinazo, linearEspinazo);
         }
         if (menudencia) {
             linearMenudencia.setVisibility(View.VISIBLE);
             listaPesosMenudencia = new ArrayList();
-            listaPesosMenudencia.add(editTextMenudencia);
+            listaPesosMenudencia.add(etPesoMenudencia);
             establecerBoton(addCampoMenudencia, listaPesosMenudencia, linearMenudencia);
+        }
+        if (ala) {
+            linearAla.setVisibility(View.VISIBLE);
+            listaPesosAla = new ArrayList();
+            listaPesosAla.add(etPesoAla);
+            establecerBoton(addCampoAla, listaPesosAla, linearAla);
+        }
+        if (otros) {
+            linearOtros.setVisibility(View.VISIBLE);
+            listaPesosOtros = new ArrayList();
+            listaPesosOtros.add(etPesoOtros);
+            establecerBoton(addCampoOtros, listaPesosOtros, linearOtros);
         }
 
         establecerBotonBoletas(view);
@@ -222,6 +240,8 @@ public class DetalleCliente extends Fragment {
             pechoe = cliente.isPechoe();
             espinazo = cliente.isEspinazo();
             menudencia = cliente.isMenudencia();
+            ala = cliente.isAla();
+            otros= cliente.isOtros();
         }
     }
 
@@ -341,6 +361,29 @@ public class DetalleCliente extends Fragment {
                     procesaBoleta.setPrecioMenudencia(precioMenudencia);
                     procesaBoleta.setCantiMenudencia(cantiMenudencia);
                 }
+                if (ala) {
+                    validarLista(listaPesosAla);
+                    listaIdProductos.add(11);
+                    if (!etPreAla.getText().toString().isEmpty())
+                        precioAla = Float.parseFloat(etPreAla.getText().toString());
+                    if (!etCantiAla.getText().toString().isEmpty())
+                        cantidadAla = Integer.parseInt(etCantiAla.getText().toString());
+                    procesaBoleta.setListaPesosAla(listaPesosAla);
+                    procesaBoleta.setPrecioAla(precioAla);
+                    procesaBoleta.setCantiAla(cantidadAla);
+                }
+                if (otros) {
+                    validarLista(listaPesosOtros);
+                    listaIdProductos.add(12);
+                    if (!etPreOtros.getText().toString().isEmpty())
+                        precioOtros = Float.parseFloat(etPreOtros.getText().toString());
+                    if (!etCantiOtros.getText().toString().isEmpty())
+                        cantidadOtros = Integer.parseInt(etCantiOtros.getText().toString());
+                    procesaBoleta.setListaPesosOtros(listaPesosOtros);
+                    procesaBoleta.setPrecioOtros(precioOtros);
+                    procesaBoleta.setCantiOtros(cantidadOtros);
+                }
+
                 FragmentManager fragmentManager = getFragmentManager();
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("ID_CLIENTE", idCliente);
@@ -397,7 +440,7 @@ public class DetalleCliente extends Fragment {
             // Captura los elementos de las vistas
             txtTextViewPollos = view.findViewById(R.id.textViewPollos);
             linearPollos = view.findViewById(R.id.linearPollos);
-            editTextPollo = view.findViewById(R.id.editTextPollo);
+            etPesoPollo = view.findViewById(R.id.editTextPollo);
             etPrePollo = view.findViewById(R.id.editTextPolloPrecio);
             etCantiPollo = view.findViewById(R.id.editTextPolloCantidad);
             addCampoPollo = view.findViewById(R.id.addCampoPollo);
@@ -405,7 +448,7 @@ public class DetalleCliente extends Fragment {
         if (gdoble) {
             textViewGDoble = view.findViewById(R.id.textViewGDoble);
             linearGDoble = view.findViewById(R.id.linearGDoble);
-            editTextGDoble = view.findViewById(R.id.editTextGDoble);
+            etPesoGdoble = view.findViewById(R.id.editTextGDoble);
             etPreGdoble = view.findViewById(R.id.editTextGdoblePrecio);
             etCantiGdoble = view.findViewById(R.id.editTextGdobleCantidad);
             addCampoGDoble = view.findViewById(R.id.addCampoGDoble);
@@ -413,7 +456,7 @@ public class DetalleCliente extends Fragment {
         if (groja) {
             textViewGRoja = view.findViewById(R.id.textViewGRoja);
             linearGRoja = view.findViewById(R.id.linearGRoja);
-            editTextGRoja = view.findViewById(R.id.editTextGRoja);
+            etPesoGroja = view.findViewById(R.id.editTextGRoja);
             etPreGroja = view.findViewById(R.id.editTextGrojaPrecio);
             etCantiGroja = view.findViewById(R.id.editTextGrojaCantidad);
             addCampoGRoja = view.findViewById(R.id.addCampoGRoja);
@@ -421,7 +464,7 @@ public class DetalleCliente extends Fragment {
         if (gnegra) {
             textViewGNegra = view.findViewById(R.id.textViewGNegra);
             linearGNegra = view.findViewById(R.id.linearGNegra);
-            editTextGNegra = view.findViewById(R.id.editTextGNegra);
+            etPesoGnegra = view.findViewById(R.id.editTextGNegra);
             etPreGnegra = view.findViewById(R.id.editTextGnegraPrecio);
             etCantiGnegra = view.findViewById(R.id.editTextGnegraCantidad);
             addCampoGNegra = view.findViewById(R.id.addCampoGNegra);
@@ -429,7 +472,7 @@ public class DetalleCliente extends Fragment {
         if (pato) {
             textViewPato = view.findViewById(R.id.textViewPato);
             linearPato = view.findViewById(R.id.linearPato);
-            editTextPato = view.findViewById(R.id.editTextPato);
+            etPesoPato = view.findViewById(R.id.editTextPato);
             etPrePato = view.findViewById(R.id.editTextPatoPrecio);
             etCantiPato = view.findViewById(R.id.editTextPatoCantidad);
             addCampoPato = view.findViewById(R.id.addCampoPato);
@@ -437,7 +480,7 @@ public class DetalleCliente extends Fragment {
         if (pavo) {
             textViewPavo = view.findViewById(R.id.textViewPavo);
             linearPavo = view.findViewById(R.id.linearPavo);
-            editTextPavo = view.findViewById(R.id.editTextPavo);
+            etPesoPavo = view.findViewById(R.id.editTextPavo);
             etPrePavo = view.findViewById(R.id.editTextPavoPrecio);
             etCantiPavo = view.findViewById(R.id.editTextPavoCantidad);
             addCampoPavo = view.findViewById(R.id.addCampoPavo);
@@ -445,7 +488,7 @@ public class DetalleCliente extends Fragment {
         if (pechoe) {
             textViewPechoE = view.findViewById(R.id.textViewPechoE);
             linearPechoE = view.findViewById(R.id.linearPechoE);
-            editTextPechoE = view.findViewById(R.id.editTextPechoE);
+            etPesoPechoE = view.findViewById(R.id.editTextPechoE);
             etPrePechoE = view.findViewById(R.id.editTextPechoEPrecio);
             etCantiPechoE = view.findViewById(R.id.editTextPechoECantidad);
             addCampoPechoE = view.findViewById(R.id.addCampoPechoE);
@@ -453,7 +496,7 @@ public class DetalleCliente extends Fragment {
         if (piernae) {
             textViewPiernaE = view.findViewById(R.id.textViewPiernaE);
             linearPiernaE = view.findViewById(R.id.linearPiernaE);
-            editTextPiernaE = view.findViewById(R.id.editTextPiernaE);
+            etPesoPiernaE = view.findViewById(R.id.editTextPiernaE);
             etPrePiernaE = view.findViewById(R.id.editTextPiernaEPrecio);
             etCantiPiernaE = view.findViewById(R.id.editTextPiernaECantidad);
             addCampoPiernaE = view.findViewById(R.id.addCampoPiernaE);
@@ -461,7 +504,7 @@ public class DetalleCliente extends Fragment {
         if (espinazo) {
             textViewEspinazo = view.findViewById(R.id.textViewEspinazo);
             linearEspinazo = view.findViewById(R.id.linearEspinazo);
-            editTextEspinazo = view.findViewById(R.id.editTextEspinazo);
+            etPesoEspinazo = view.findViewById(R.id.editTextEspinazo);
             etPreEspinazo = view.findViewById(R.id.editTextEspinazoPrecio);
             etCantiEspinazo = view.findViewById(R.id.editTextEspinazoCantidad);
             addCampoEspinazo = view.findViewById(R.id.addCampoEspinazo);
@@ -469,10 +512,26 @@ public class DetalleCliente extends Fragment {
         if (menudencia) {
             textViewMenudencia = view.findViewById(R.id.textViewMenudencia);
             linearMenudencia = view.findViewById(R.id.linearMenudencia);
-            editTextMenudencia = view.findViewById(R.id.editTextMenudencia);
+            etPesoMenudencia = view.findViewById(R.id.editTextMenudencia);
             etPreMenudencia = view.findViewById(R.id.editTextMenudenciaPrecio);
             etCantiMenudencia = view.findViewById(R.id.editTextMenudenciaCantidad);
             addCampoMenudencia = view.findViewById(R.id.addCampoMenudencia);
+        }
+        if (ala) {
+            textViewAla = view.findViewById(R.id.textViewAla);
+            linearAla = view.findViewById(R.id.linearAla);
+            etPesoAla = view.findViewById(R.id.editTextAla);
+            etPreAla = view.findViewById(R.id.editTextAlaPrecio);
+            etCantiAla = view.findViewById(R.id.editTextAlaCantidad);
+            addCampoAla = view.findViewById(R.id.addCampoAla);
+        }
+        if (otros) {
+            textViewOtros = view.findViewById(R.id.textViewOtros);
+            linearOtros = view.findViewById(R.id.linearOtros);
+            etPesoOtros = view.findViewById(R.id.editTextOtros);
+            etPreOtros = view.findViewById(R.id.editTextOtrosPrecio);
+            etCantiOtros = view.findViewById(R.id.editTextOtrosCantidad);
+            addCampoOtros = view.findViewById(R.id.addCampoOtros);
         }
     }
 

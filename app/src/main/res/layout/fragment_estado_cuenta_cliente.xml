@@ -23,6 +23,32 @@
                 android:gravity="center_horizontal"
                 android:text="@string/estado_de_cuenta" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="@dimen/paddingMinimo"
+                android:background="@drawable/custom_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="día-mes-año"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextFechaCompra"
+                    style="@style/editTextCampoTexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:ems="10"
+                    android:focusableInTouchMode="false" />
+
+            </LinearLayout>
+
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -96,7 +122,7 @@
                             android:paddingHorizontal="@dimen/paddingNormal"
                             android:text="Reporte del día"
                             android:textColor="#000"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
                     </LinearLayout>
                 </RelativeLayout>
             </HorizontalScrollView>
