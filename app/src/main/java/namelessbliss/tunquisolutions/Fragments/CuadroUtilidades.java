@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,7 +21,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +36,9 @@ public class CuadroUtilidades extends Fragment {
     TableLayout tablaUtilidad;
 
     String nombreCliente, fechaActual;
-    float ventaDia = 0;
+    float ventaDia = 0, utilidadDia = 0, compraDia = 0;
+
+    EditText etFecha, etUtilidadDia;
 
     // User Session Manager Class
     UserSessionManager session;
@@ -69,6 +71,8 @@ public class CuadroUtilidades extends Fragment {
         fechaActual = mDay + "-" + month + "-" + mYear;
 
         tablaUtilidad = view.findViewById(R.id.tablaUtilidades);
+        etFecha = view.findViewById(R.id.editTextFecha);
+        etUtilidadDia = view.findViewById(R.id.etUtilidadDia);
 
         // Session class instance
         session = new UserSessionManager(getContext());
@@ -87,23 +91,23 @@ public class CuadroUtilidades extends Fragment {
 
 
     private void obtenerCuadroUtilidades() {
+        etFecha.setText(fechaActual);
         String server_url = "http://avicolas.skapir.com/cuadro_utilidades.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONArray jsonAry = null;
+                        JSONObject jsonObject;
                         try {
-                            jsonAry = new JSONArray(response);
-                            for (int i = 0; i < jsonAry.length(); i++) {
-                                JSONObject jSONObject = jsonAry.getJSONObject(i);
-                                nombreCliente = jSONObject.getString("cliente");
-                                ventaDia = Float.parseFloat(jSONObject.getString("ventaDia"));
-                                llenarTabla(tablaUtilidad, nombreCliente, String.valueOf(ventaDia));
-                            }
-                            Toast.makeText(getContext(),"Datos obtenidos",Toast.LENGTH_SHORT).show();
+                            jsonObject = new JSONObject(response);
+                            compraDia = Float.parseFloat(jsonObject.getString("compraDia"));
+                            ventaDia = Float.parseFloat(jsonObject.getString("ventaDia"));
+                            utilidadDia = Float.parseFloat(jsonObject.getString("utilidadDia"));
+                            llenarTabla(tablaUtilidad, String.valueOf(ventaDia), String.valueOf(compraDia));
+                            etUtilidadDia.setText(String.valueOf(utilidadDia));
+                            Toast.makeText(getContext(), "Datos obtenidos", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            Toast.makeText(getContext(),"No hay ventas registradas el día de hoy",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "No hay datos registrados el día de hoy", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
 
@@ -112,7 +116,7 @@ public class CuadroUtilidades extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(),"No se pudo obtener los datos",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No se pudo obtener los datos", Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                         error.getMessage(); // when error come i will log it
                     }
@@ -134,10 +138,10 @@ public class CuadroUtilidades extends Fragment {
     private void llenarTabla(TableLayout tableLayout, String nombreCliente, String ventaDia) {
         //if (fecha.equalsIgnoreCase(fechaActual)) {
 
-            llenarDatosTabla(tableLayout, nombreCliente, ventaDia);
+        llenarDatosTabla(tableLayout, nombreCliente, ventaDia);
 
         //} else {
-          //  llenarDatosTabla(tableLayout, nombreCliente, "0");
+        //  llenarDatosTabla(tableLayout, nombreCliente, "0");
         //}
 
     }

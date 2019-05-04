@@ -13,12 +13,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
                 style="@style/textViewOscuro"
                 android:layout_marginBottom="@dimen/marginHTabla"
                 android:text="Cuadro de Utilidades" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/paddingMinimo"
+                android:background="@drawable/custom_background"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="día-mes-año"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextFecha"
+                    style="@style/editTextCampoTexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:ems="10"
+                    android:focusableInTouchMode="false" />
+
+            </LinearLayout>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -48,7 +75,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:paddingHorizontal="@dimen/paddingNormal"
-                                android:text="Cliente"
+                                android:text="Venta Total"
                                 android:textSize="@dimen/titulo" />
 
                             <TextView
@@ -58,7 +85,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:paddingHorizontal="@dimen/paddingNormal"
-                                android:text="Utilidad"
+                                android:text="Compra Total"
                                 android:textSize="@dimen/titulo" />
 
                         </TableRow>
@@ -86,6 +113,38 @@
                     </LinearLayout>-->
                 </RelativeLayout>
             </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/paddingMinimo"
+                android:background="@drawable/custom_background"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingHorizontal="@dimen/titulo"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textViewLista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold|italic"
+                    android:text="Utilidad" />
+
+                <EditText
+                    android:id="@+id/etUtilidadDia"
+                    style="@style/editTextCampoDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/paddingMinimo"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:focusableInTouchMode="false"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
