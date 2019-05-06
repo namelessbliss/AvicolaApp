@@ -54,9 +54,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -537,7 +534,7 @@ public class ProcesaBoleta extends Fragment {
             for (int i = 0; i < listaPesosAla.size(); i++) {
                 peso += Float.parseFloat(listaPesosAla.get(i).getText().toString());
             }
-            llenarTabla(tableLayout, "Menudencia", cantiAla, peso + merma, precioAla);
+            llenarTabla(tableLayout, "Ala", cantiAla, peso + merma, precioAla);
         }
         if (listaPesosOtros != null && !listaPesosOtros.isEmpty()) {
             float peso = 0;
@@ -545,7 +542,7 @@ public class ProcesaBoleta extends Fragment {
             for (int i = 0; i < listaPesosOtros.size(); i++) {
                 peso += Float.parseFloat(listaPesosOtros.get(i).getText().toString());
             }
-            llenarTabla(tableLayout, "Menudencia", cantiOtros, peso + merma, precioOtros);
+            llenarTabla(tableLayout, "Otros", cantiOtros, peso + merma, precioOtros);
         }
     }
 

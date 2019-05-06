@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +42,7 @@ import namelessbliss.tunquisolutions.R;
  */
 public class RegistrarPago extends Fragment {
 
-    String idUsuario, idCliente, nombreCliente, montoSubtotal, saldo, total, fecha;
+    String idBoleta, idUsuario, idCliente, nombreCliente, montoSubtotal, saldo, total, fecha;
 
     // Pago que se registra
     float pago;
@@ -221,6 +221,7 @@ public class RegistrarPago extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<String, String>();
+                param.put("idBoleta", idBoleta);
                 param.put("idUsuario", idUsuario);
                 param.put("idCliente", idCliente);
                 param.put("saldoAnterior", saldoAnterior.getText().toString());
@@ -241,6 +242,7 @@ public class RegistrarPago extends Fragment {
 
     private void obtenerDatos() {
         Bundle bundle = getArguments();
+        idBoleta = bundle.getString("ID_BOLETA");
         idUsuario = bundle.getString("ID_USUARIO");
         idCliente = bundle.getString("ID_CLIENTE");
         nombreCliente = bundle.getString("NOMBRE_CLIENTE");
@@ -257,9 +259,29 @@ public class RegistrarPago extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.alertDialog2);
 
         builder.setMessage("Se registro el pago satisfactoriamente").setTitle("Información")
-                .setPositiveButton("OK", null);
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        regresarVistaBoletasCliente();
+                    }
+                });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    /**
+     * Limpia las vista de edita boleta y regresa a las boletas del cliente
+     */
+    private void regresarVistaBoletasCliente() {
+        BoletasCliente boletasCliente = new BoletasCliente();
+        FragmentManager fragmentManager = getFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString("ID_CLIENTE", idCliente);
+        boletasCliente.setArguments(bundle);
+        assert fragmentManager != null;
+        fragmentManager.popBackStack("Boleta", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentManager.beginTransaction().replace(R.id.Contenedor, boletasCliente).addToBackStack("Boleta").commit();
     }
 
 }

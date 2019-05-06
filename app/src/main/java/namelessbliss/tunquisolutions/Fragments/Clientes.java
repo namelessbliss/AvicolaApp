@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,6 +42,9 @@ import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
 
 public class Clientes extends Fragment implements AdapterView.OnItemClickListener {
 
+    SwipeRefreshLayout swipeLayout;
+    TextView errorMensaje;
+
     String idCliente, nombreCliente;
 
     String url = new Servidor().getSERVIDOR_URL();
@@ -47,7 +52,7 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
     // User Session Manager Class
     UserSessionManager session;
 
-    private List<Cliente> listClientes = new ArrayList<>();
+    private List<Cliente> listClientes;
     RequestQueue queue;
     Bundle bundle;
     ListView listView;
@@ -81,7 +86,7 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        View view = inflater.inflate(R.layout.fragment_clientes, container, false);
         // Session class instance
         session = new UserSessionManager(getContext());
 
@@ -94,41 +99,39 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
         // get nombre
         nombre = user.get(UserSessionManager.KEY_NAME);
 
-        listClientes.removeAll(listClientes);
-        View view = inflater.inflate(R.layout.fragment_clientes, container, false);
+        listClientes = new ArrayList<>();
 
-
+        // Getting SwipeContainerLayout
+        swipeLayout = view.findViewById(R.id.swipe_container);
         listView = (ListView) view.findViewById(R.id.listView);
+        errorMensaje = view.findViewById(R.id.tvError);
         // Adjuntamos el método click para la vista de list view
         listView.setOnItemClickListener(this);
-        /*
-        listClientes = new ArrayList<>();
-        listClientes.add(new Cliente("Adolfo", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Pedro", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Joan", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Gabriela", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Susi", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Juan", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Alex", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Bety", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Susana", R.mipmap.ic_pollo));
-        listClientes.add(new Cliente("Marta", R.mipmap.ic_pollo));
-        */
 
-        //AdaptadorListView listadapter = new AdaptadorListView(getActivity(), R.layout.list_view_clientes, listClientes);
-
-        /*ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                menuItems
-        );*/
-
-        //listView.setAdapter(listadapter);
         queue = Volley.newRequestQueue(getContext());
         getClientes();
 
+        establecerRefresh();
+
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void establecerRefresh() {
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getClientes();
+            }
+        });
+
+        // Scheme colors for animation
+        swipeLayout.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
     }
 
     /**
@@ -141,7 +144,7 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
                 return c1.getNombre().compareToIgnoreCase(c2.getNombre());
             }
         });
-
+        swipeLayout.setRefreshing(false);
         listadapter.notifyDataSetChanged();
     }
 
@@ -153,8 +156,9 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        final String result = response.toString();
+                        listClientes.removeAll(listClientes);
+                        listClientes = new ArrayList<>();
+                        //final String result = response.toString();
                         //System.out.println(result);
                         //Log.d("response", "result : " + result); //when response come i will log it
                         JSONArray jsonAry = null;
@@ -172,7 +176,8 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
                             listView.setAdapter(listadapter);
 
                             sortArrayList();
-
+                            listView.setVisibility(View.VISIBLE);
+                            errorMensaje.setVisibility(View.GONE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -181,7 +186,10 @@ public class Clientes extends Fragment implements AdapterView.OnItemClickListene
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "No se pudo obtener lista de clientes", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "No se pudo obtener lista de clientes", Toast.LENGTH_SHORT).show();
+                        errorMensaje.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
+                        swipeLayout.setRefreshing(false);
                         error.printStackTrace();
                         error.getMessage(); // when error come i will log it
                     }

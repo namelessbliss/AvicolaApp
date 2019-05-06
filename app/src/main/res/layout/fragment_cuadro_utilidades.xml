@@ -75,7 +75,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:paddingHorizontal="@dimen/paddingNormal"
-                                android:text="Venta Total"
+                                android:text="Cliente"
                                 android:textSize="@dimen/titulo" />
 
                             <TextView
@@ -85,7 +85,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:paddingHorizontal="@dimen/paddingNormal"
-                                android:text="Compra Total"
+                                android:text="Utilidad"
                                 android:textSize="@dimen/titulo" />
 
                         </TableRow>
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textStyle="bold|italic"
-                    android:text="Utilidad" />
+                    android:text="Utilidad Total" />
 
                 <EditText
                     android:id="@+id/etUtilidadDia"

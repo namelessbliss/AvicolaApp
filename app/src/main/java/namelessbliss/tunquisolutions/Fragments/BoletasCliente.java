@@ -1,10 +1,6 @@
 package namelessbliss.tunquisolutions.Fragments;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,17 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Image;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,14 +46,11 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
 
     // clase constructora de pdf
     TemplatePDF pdf;
-    //cabecera de tabla de pdf
-    String[] header = {"Poducto", "Cantidad", "Peso", "Precio", "Total"};
 
     // User Session Manager Class
     UserSessionManager session;
 
     private ArrayList<Boleta> listaBoletas = new ArrayList<>();
-    private ArrayList<Boleta> listaBoletasOriginal = new ArrayList<>();
     RequestQueue queue;
     Bundle bundle;
     ListView listView;
@@ -80,6 +67,8 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
     String fecha = "";
 
     EditaBoleta editaBoleta;
+
+    AdaptadorListViewBoletas listadapterBol;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,16 +112,14 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
 
         obtenerDatosCliente();
 
-        listView = (ListView) view.findViewById(R.id.listViewBoleta);
+        listView = view.findViewById(R.id.listViewBoleta);
         // Adjuntamos el método click para la vista de list view
         listView.setOnItemClickListener(this);
 
-        ListView listView = (ListView) view.findViewById(R.id.listViewBoleta);
-        // Adjuntamos el método click para la vista de list view
-        listView.setOnItemClickListener(this);
 
         queue = Volley.newRequestQueue(getContext());
         getBoletas();
+
         return view;
     }
 
@@ -158,15 +145,30 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
                                 JSONObject jSONObject = jsonAry.getJSONObject(i);
                                 if (!jSONObject.getString("FECHA").equalsIgnoreCase(fecha)) {
                                     fecha = jSONObject.getString("FECHA");
-                                    listaBoletas.add(new Boleta(R.mipmap.ic_boleta,
-                                            jSONObject.getInt("ID_BOLETA"),jSONObject.getInt("ID_USUARIO"),
-                                            jSONObject.getInt("ID_CLIENTE"), jSONObject.getString("FECHA"),
-                                            Float.parseFloat(jSONObject.getString("total"))));
+                                    Boleta boleta = new Boleta();
+
+                                    int icono = R.mipmap.ic_boleta;
+                                    int idBol = jSONObject.getInt("ID_BOLETA");
+                                    int idUser = jSONObject.getInt("ID_USUARIO");
+                                    int idClien = jSONObject.getInt("ID_CLIENTE");
+                                    String date = jSONObject.getString("FECHA");
+                                    float tot = Float.parseFloat(jSONObject.getString("total"));
+                                    boolean boletaPagada = "1".equalsIgnoreCase(jSONObject.getString("boletaPagada"));
+                                    boleta.setIcono(icono);
+                                    boleta.setIdBoleta(idBol);
+                                    boleta.setIdUsuario(idUser);
+                                    boleta.setIdCliente(idClien);
+                                    boleta.setFecha(date);
+                                    boleta.setSubtotal(tot);
+                                    boleta.setBoletaPagada(boletaPagada);
+
+                                    listaBoletas.add(boleta);
                                 }
                             }
-                            AdaptadorListViewBoletas listadapterBol = new AdaptadorListViewBoletas(getContext(), R.layout.list_view_boletas, listaBoletas);
+                            listadapterBol = new AdaptadorListViewBoletas(getContext(), R.layout.list_view_boletas, listaBoletas);
 
                             listView.setAdapter(listadapterBol);
+                            listadapterBol.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -202,6 +204,7 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
     public void clickBoleta(Boleta boleta) {
 
         if (boleta != null) {
+            listadapterBol.notifyDataSetChanged();
             editaBoleta = new EditaBoleta();
             FragmentManager manager = getFragmentManager();
             Bundle bundle1 = new Bundle();
@@ -209,9 +212,10 @@ public class BoletasCliente extends Fragment implements AdapterView.OnItemClickL
             bundle1.putString("ID_USUARIO", idUsuario);
             bundle1.putString("ID_CLIENTE", idCliente);
             bundle1.putString("NOMBRE_CLIENTE", nombreCliente);
+            bundle1.putBoolean("BOLETA_PAGADA", boleta.isBoletaPagada());
             bundle1.putString("FECHA", boleta.getFecha());
             editaBoleta.setArguments(bundle1);
-            manager.beginTransaction().replace(R.id.Contenedor, editaBoleta).addToBackStack(null).commit();
+            manager.beginTransaction().replace(R.id.Contenedor, editaBoleta).addToBackStack("Boleta").commit();
 
             //llenarPDF(boleta);
             //verPDF();

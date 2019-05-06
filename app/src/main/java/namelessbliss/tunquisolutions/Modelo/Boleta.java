@@ -8,6 +8,7 @@ public class Boleta {
     private int idProducto;
     private String fecha;
     private String producto;
+    private boolean boletaPagada;
     private int cantidad;
     private float pesoNeto;
     private float precio;
@@ -50,13 +51,14 @@ public class Boleta {
         this.precio = precio;
     }
 
-    public Boleta(int icono, int idBoleta, int idUsuario, int idCliente, String fecha, float subtotal) {
+    public Boleta(int icono, int idBoleta, int idUsuario, int idCliente, String fecha, float subtotal, boolean boletaPagada) {
         this.icono = icono;
         this.idBoleta = idBoleta;
         this.idUsuario = idUsuario;
         this.idCliente = idCliente;
         this.fecha = fecha;
         this.subtotal = subtotal;
+        this.boletaPagada = boletaPagada;
     }
 
 
@@ -155,5 +157,12 @@ public class Boleta {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+    public boolean isBoletaPagada() {
+        return boletaPagada;
+    }
+
+    public void setBoletaPagada(boolean boletaPagada) {
+        this.boletaPagada = boletaPagada;
     }
 }

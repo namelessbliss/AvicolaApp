@@ -1,10 +1,10 @@
 package namelessbliss.tunquisolutions;
 
-import android.app.DatePickerDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,13 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import namelessbliss.tunquisolutions.Fragments.Boletas;
 import namelessbliss.tunquisolutions.Fragments.Clientes;
 import namelessbliss.tunquisolutions.Fragments.Configuracion;
-import namelessbliss.tunquisolutions.Fragments.EstadoCuenta;
 import namelessbliss.tunquisolutions.Fragments.EstadoCuentaCliente;
 import namelessbliss.tunquisolutions.Fragments.ModuloGestion;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
@@ -179,9 +177,7 @@ public class NavigationDrawer extends AppCompatActivity
                         .commit();
                 break;
             case R.id.nav_cerrarSersion:
-                // Clear the User session data
-                // and redirect user to LoginActivity
-                session.logoutUser();
+                dialogoAlertaLogOut("¿Esta seguro que desea cerrar sesion?");
                 break;
             default:
                 break;
@@ -190,6 +186,23 @@ public class NavigationDrawer extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void dialogoAlertaLogOut(String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.alertDialog1);
+
+        builder.setMessage(mensaje).setTitle("Advertencia")
+                .setCancelable(true)
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Clear the User session data
+                        // and redirect user to LoginActivity
+                        session.logoutUser();
+                    }
+                }).setNegativeButton("Cancelar",null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }

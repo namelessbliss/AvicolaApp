@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +37,10 @@ public class CuadroUtilidades extends Fragment {
     TableLayout tablaUtilidad;
 
     String nombreCliente, fechaActual;
-    float ventaDia = 0, utilidadDia = 0, compraDia = 0;
+    float ventaDia = 0, utilidadCliente = 0, precioCompraDia = 0, peso = 0, utilidadDia = 0;
+    int cantidad = 0;
+
+    final float MERMA_FIJA = 0.350f;
 
     EditText etFecha, etUtilidadDia;
 
@@ -84,7 +88,7 @@ public class CuadroUtilidades extends Fragment {
         idUsuario = user.get(UserSessionManager.KEY_ID);
         queue = Volley.newRequestQueue(getContext());
 
-        obtenerCuadroUtilidades();
+        obtenerPrecioCompraDia();
 
         return view;
     }
@@ -92,19 +96,30 @@ public class CuadroUtilidades extends Fragment {
 
     private void obtenerCuadroUtilidades() {
         etFecha.setText(fechaActual);
-        String server_url = "http://avicolas.skapir.com/cuadro_utilidades.php";
+        String server_url = "http://avicolas.skapir.com/cuadro_utilidades_cliente.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONObject jsonObject;
+                        JSONArray jsonAry = null;
                         try {
-                            jsonObject = new JSONObject(response);
-                            compraDia = Float.parseFloat(jsonObject.getString("compraDia"));
-                            ventaDia = Float.parseFloat(jsonObject.getString("ventaDia"));
-                            utilidadDia = Float.parseFloat(jsonObject.getString("utilidadDia"));
-                            llenarTabla(tablaUtilidad, String.valueOf(ventaDia), String.valueOf(compraDia));
+                            jsonAry = new JSONArray(response);
+                            for (int i = 0; i < jsonAry.length(); i++) {
+                                JSONObject jSONObject = (JSONObject) jsonAry.getJSONObject(i);
+                                String cliente = jSONObject.getString("cliente");
+                                ventaDia = Float.parseFloat(jSONObject.getString("ventaDia"));
+                                peso = Float.parseFloat(jSONObject.getString("peso"));
+                                cantidad = Integer.parseInt(jSONObject.getString("cantidad"));
+
+                                //calculo de la utilidad
+                                float subt = ventaDia - ((cantidad * MERMA_FIJA) + peso) * precioCompraDia;
+                                subt = (int) (subt * 100);
+                                utilidadCliente = subt / 100.0f;
+                                utilidadDia += utilidadCliente;
+                                llenarTabla(tablaUtilidad, cliente, String.valueOf(utilidadCliente));
+                            }
                             etUtilidadDia.setText(String.valueOf(utilidadDia));
+
                             Toast.makeText(getContext(), "Datos obtenidos", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             Toast.makeText(getContext(), "No hay datos registrados el día de hoy", Toast.LENGTH_SHORT).show();
@@ -132,6 +147,46 @@ public class CuadroUtilidades extends Fragment {
             }
         };
         queue.add(stringRequest);
+    }
+
+    private void obtenerPrecioCompraDia() {
+        String server_url = "http://avicolas.skapir.com/precio_compra_dia.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject jsonObject;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            precioCompraDia = Float.parseFloat(jsonObject.getString("precioCompra"));
+                            obtenerCuadroUtilidades();
+                        } catch (JSONException e) {
+                            Toast.makeText(getContext(), "No hay datos registrados el día de hoy", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "No se pudo obtener los datos", Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                        error.getMessage(); // when error come i will log it
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                param.put("idUsuario", idUsuario);
+                param.put("fecha", fechaActual);
+
+                return param;
+            }
+        };
+        queue.add(stringRequest);
+
     }
 
 

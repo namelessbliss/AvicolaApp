@@ -11,6 +11,12 @@
         android:title="Ver boleta generada"
         android:visible="true"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/eliminarBoleta"
+        android:title="Eliminar Boleta"
+        android:enabled="false"
+        android:visible="false"
+        app:showAsAction="never" />
 
 
 </menu>

@@ -24,4 +24,5 @@
     <string name="reintentar">Reintentar</string>
     <string name="generar_reporte">Generar Reporte</string>
     <string name="ingrese_peso">Ingrese peso</string>
+    <string name="error_datos">Error, no se pudo obtener datos</string>
 </resources>

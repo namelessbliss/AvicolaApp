@@ -1,7 +1,5 @@
 package namelessbliss.tunquisolutions.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,12 +25,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import namelessbliss.tunquisolutions.Adaptadores.AdaptadorListView;
-import namelessbliss.tunquisolutions.Modelo.Boleta;
 import namelessbliss.tunquisolutions.Modelo.Cliente;
 import namelessbliss.tunquisolutions.R;
 import namelessbliss.tunquisolutions.SessionManager.UserSessionManager;
@@ -50,6 +48,7 @@ public class Boletas extends Fragment implements AdapterView.OnItemClickListener
     RequestQueue queue;
     Bundle bundle;
     ListView listView;
+    AdaptadorListView listadapter;
 
     // get user data from session
     HashMap<String, String> user;
@@ -136,9 +135,11 @@ public class Boletas extends Fragment implements AdapterView.OnItemClickListener
                                 nombreCliente = jSONObject.getString("NOMBRE_CLIENTE");
                                 listClientes.add(new Cliente(idCliente, nombreCliente, R.mipmap.ic_pollo));
                             }
-                            AdaptadorListView listadapter = new AdaptadorListView(getContext(), R.layout.list_view_clientes, listClientes);
+                            listadapter = new AdaptadorListView(getContext(), R.layout.list_view_clientes, listClientes);
 
                             listView.setAdapter(listadapter);
+
+                            sortArrayList();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -163,6 +164,20 @@ public class Boletas extends Fragment implements AdapterView.OnItemClickListener
         queue.add(stringRequest);
     }
 
+    /**
+     * Compara y ordena los nombres de la lista de clientes
+     */
+    private void sortArrayList() {
+        Collections.sort(listClientes, new Comparator<Cliente>() {
+            @Override
+            public int compare(Cliente c1, Cliente c2) {
+                return c1.getNombre().compareToIgnoreCase(c2.getNombre());
+            }
+        });
+
+        listadapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         clickCliente(listClientes.get(position));
@@ -177,7 +192,9 @@ public class Boletas extends Fragment implements AdapterView.OnItemClickListener
             establecerBundle(cliente, bolCliente);
 
             FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.Contenedor, bolCliente).addToBackStack(null).commit();
+            assert manager != null;
+            manager.popBackStack("Cliente", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            manager.beginTransaction().add(new Boletas(),"Boleta").addToBackStack("Boleta").replace(R.id.Contenedor, bolCliente).commit();
 
         }
 

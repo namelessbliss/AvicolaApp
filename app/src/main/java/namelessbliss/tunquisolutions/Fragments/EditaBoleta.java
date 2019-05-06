@@ -3,7 +3,9 @@ package namelessbliss.tunquisolutions.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -75,6 +77,7 @@ public class EditaBoleta extends Fragment {
 
     // variables datos boleta
     String idBoleta, idUsuario, idCliente, nombreCliente, fecha;
+    boolean boletaPagada = false;
 
     TextView nombreEmpresa, direccionEmpresa, telefonoEmpresa, fechaBoleta,
             txtnombreCliente;
@@ -123,12 +126,10 @@ public class EditaBoleta extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.opcionesCliente).setVisible(false);
         menu.findItem(R.id.verBoleta).setVisible(true);
+        menu.findItem(R.id.eliminarBoleta).setVisible(true);
+        menu.findItem(R.id.eliminarBoleta).setEnabled(true);
         super.onPrepareOptionsMenu(menu);
 
-    }
-
-    public EditaBoleta() {
-        // Required empty public constructor
     }
 
 
@@ -165,21 +166,28 @@ public class EditaBoleta extends Fragment {
 
         obtenerDatosBoleta();
 
-        actualizarVenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actualizarVenta.setEnabled(false);
-                actualizarVenta.setVisibility(View.GONE);
-                actualizarVenta();
-            }
-        });
+        if (boletaPagada) {
+            actualizarVenta.setVisibility(View.GONE);
+            registrarPago.setVisibility(View.GONE);
+            Toast.makeText(getContext(), "La boleta ya ha sido pagada", Toast.LENGTH_SHORT).show();
+        } else {
+            actualizarVenta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    actualizarVenta.setEnabled(false);
+                    actualizarVenta.setVisibility(View.GONE);
+                    actualizarVenta();
+                }
+            });
 
-        registrarPago.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registrarPago();
-            }
-        });
+            registrarPago.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    registrarPago();
+                }
+            });
+        }
+
 
         return view;
     }
@@ -187,13 +195,14 @@ public class EditaBoleta extends Fragment {
     private void registrarPago() {
         RegistrarPago registrarPago = new RegistrarPago();
         Bundle bundle = new Bundle();
+        bundle.putString("ID_BOLETA", idBoleta);
         bundle.putString("ID_CLIENTE", idCliente);
         bundle.putString("ID_USUARIO", String.valueOf(idUsuario));
         bundle.putString("NOMBRE_CLIENTE", nombreCliente);
         bundle.putString("MONTO", String.valueOf(montoSubtotal));
         registrarPago.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.Contenedor, registrarPago).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.Contenedor, registrarPago).addToBackStack("Boleta").commit();
     }
 
     private void obtenerDatosBoleta() {
@@ -461,8 +470,8 @@ public class EditaBoleta extends Fragment {
             idUsuario = bundle.getString("ID_USUARIO");
             idCliente = bundle.getString("ID_CLIENTE");
             nombreCliente = bundle.getString("NOMBRE_CLIENTE");
+            boletaPagada = bundle.getBoolean("BOLETA_PAGADA");
             fecha = bundle.getString("FECHA");
-
             fechaBoleta.setText(fecha);
             txtnombreCliente.setText(nombreCliente);
         }
@@ -564,7 +573,80 @@ public class EditaBoleta extends Fragment {
             ocultarTecladoDe(getView());
             validarPermisos();
         }
+        if (id == R.id.eliminarBoleta) {
+            ocultarTecladoDe(getView());
+            eliminarBoleta();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void eliminarBoleta() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.alertDialog2);
+
+        builder.setMessage("¿Esta seguro de que desea eliminar este registro de venta?").setTitle("Advertencia")
+                .setCancelable(true)
+                .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        eliminarBoletaBD();
+                    }
+                }).setNegativeButton("No, cancelar", null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void eliminarBoletaBD() {
+
+        String server_url = "http://avicolas.skapir.com/eliminar_venta.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        final String result = response;
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            String respuesta = jsonObject.getString("RESPUESTA");
+                            if (respuesta.equalsIgnoreCase("COMPLETADO")) {
+                                Toast.makeText(getActivity(), "¡Boleta Eliminada!", Toast.LENGTH_SHORT).show();
+                                dialogoAlerta("Se elimino correctamente el registro de venta");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "¡Error al eliminar registro de venta!", Toast.LENGTH_LONG).show();
+                        dialogoAlerta("No se pudo eliminar correctamente el registro de venta");
+                        registrarPago.setVisibility(View.GONE);
+                        actualizarVenta.setVisibility(View.VISIBLE);
+                        actualizarVenta.setEnabled(true);
+                        error.printStackTrace();
+                        error.getMessage(); // when error come i will log it
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                param.put("idUsuario", idUsuario);
+                param.put("idCliente", idCliente);
+                param.put("idBoleta", idBoleta);
+
+                return param;
+            }
+        };
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
+
     }
 
     public void validarPermisos() {
@@ -615,4 +697,32 @@ public class EditaBoleta extends Fragment {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    public void dialogoAlerta(String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.alertDialog2);
+
+        builder.setMessage(mensaje).setTitle("Información")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        regresarVistaBoletasCliente();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    /**
+     * Limpia las vista de edita boleta y regresa a las boletas del cliente
+     */
+    private void regresarVistaBoletasCliente() {
+        BoletasCliente boletasCliente = new BoletasCliente();
+        FragmentManager fragmentManager = getFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString("ID_CLIENTE", idCliente);
+        boletasCliente.setArguments(bundle);
+        assert fragmentManager != null;
+        fragmentManager.popBackStack("Boleta", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentManager.beginTransaction().replace(R.id.Contenedor, boletasCliente).addToBackStack("Boleta").commit();
+    }
 }
